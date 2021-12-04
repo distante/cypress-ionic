@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": false,
+    "outDir": "../../dist/out-tsc",
+    "allowJs": true,
+    "types": [
+      "cypress",
+      "node",
+      "@testing-library/cypress"
+    ]
+  },
+  "include": [
+    "../node_modules/cypress",
+    "./**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

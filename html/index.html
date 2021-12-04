@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/node_modules/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <script type="module" src="/node_modules/@ionic/core/dist/esm/index.js"></script>
+    <script nomodule src="/node_modules/@ionic/core/dist/index.js"></script>
+    <script type="module">
+      import { setupConfig } from '/node_modules/@ionic/core/dist/esm/index.js';
+      import { defineCustomElements } from '/node_modules/@ionic/core/dist/esm/loader.js';
+
+      setupConfig({
+        mode: 'md',
+      });
+      defineCustomElements(window).then(() => {
+        /* Ionic is loaded! */
+      });
+    </script>
+
+    <title>Cypress Ionic Tester</title>
+  </head>
+  <body>
+    <ion-item>
+      <ion-button>ion-button</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">ion-input</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-select-single">
+      <ion-label>ion-select ion-alert</ion-label>
+      <ion-select value="1" ok-text="Okay" cancel-text="Dismiss" interface="alert" >
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="ion-select-multiple">
+      <ion-label>ion-select ion-action-sheet</ion-label>
+      <ion-select value="a" ok-text="Okay" cancel-text="Dismiss" interface="action-sheet">
+        <ion-select-option value="a">a</ion-select-option>
+        <ion-select-option value="b">b</ion-select-option>
+        <ion-select-option value="c">c</ion-select-option>
+        <ion-select-option value="d">d</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="ion-select-multiple">
+      <ion-label>ion-select ion-popover </ion-label>
+      <ion-select value="x" ok-text="Okay" cancel-text="Dismiss" interface="popover">
+        <ion-select-option value="x">x</ion-select-option>
+        <ion-select-option value="y">y</ion-select-option>
+        <ion-select-option value="z">z</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </body>
+</html>
