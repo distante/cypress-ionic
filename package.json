@@ -1,11 +1,19 @@
 {
   "name": "@saninn/cypress-ionic",
   "version": "0.0.1",
-  "description": "A set of functions to help you interact with Ionic Framework elements",
+  "description": "A set of functions to help you interact with Ionic Framework elements in your Cypress tests",
   "main": "index.ts",
   "scripts": {
     "test": "test",
-    "serve": "http-server ."
+    "serve": "http-server .",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/distante/cypress-ionic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/distante/cypress-ionic/issues"
   },
   "keywords": [
     "cypress",
