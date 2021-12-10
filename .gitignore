@@ -40,3 +40,4 @@ UserInterfaceState.xcuserstate
 dist/
 dist-bundles/
 dist-zips/
+cypress/videos

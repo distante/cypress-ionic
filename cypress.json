@@ -1,1 +1,5 @@
-{}
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "baseUrl": "http://localhost:3999/",
+  "includeShadowDom": true
+}

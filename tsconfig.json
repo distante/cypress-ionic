@@ -2,12 +2,17 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "esModuleInterop": true, 
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,  
+    "strict": true,
     "skipLibCheck": true,
     "importHelpers": true,
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@lib": ["./src/index.ts"]
+    },
+    "types": ["cypress", "node", "@testing-library/cypress"]
   }
 }
