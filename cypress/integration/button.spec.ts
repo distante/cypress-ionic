@@ -1,4 +1,4 @@
-import { clickOnIonButton } from '@lib';
+import { ionButtonCypress } from '@lib';
 import * as testHelpers from '../../test-helpers/test-helpers.js';
 
 describe('Ion Button', () => {
@@ -15,7 +15,7 @@ describe('Ion Button', () => {
           ionButton[0].innerText
         );
 
-        clickOnIonButton('ion-button');
+        ionButtonCypress.click(selector);
 
         cy.contains(wantedText, { matchCase: false }).should('exist');
       });
