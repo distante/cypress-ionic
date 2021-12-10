@@ -1,6 +1,10 @@
 import { ionSelectCypress } from '@lib';
 
-const selectors = ['ion-select[interface=alert]'];
+const selectors = [
+  'ion-select[interface=alert]',
+  'ion-select[interface=action-sheet]',
+];
+
 selectors.forEach((selector) => {
   describe(selector, () => {
     beforeEach(() => {
