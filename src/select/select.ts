@@ -4,9 +4,11 @@ import { IonSelect } from '@ionic/core/components/ion-select';
 import { ActionSheetSelect } from './action-sheet-select';
 import { AlertSelect } from './alert-select';
 import { IonSelectFunctions } from './ion-select-functions.interface';
+import { PopoverSelect } from './popover-select';
 
 const alertSelect = new AlertSelect();
 const actionSheetSelect = new ActionSheetSelect();
+const popoverSelect = new PopoverSelect();
 
 class Select implements IonSelectFunctions {
   #getSelectInterface(
@@ -30,7 +32,11 @@ class Select implements IonSelectFunctions {
               ionCssSelector,
               optionIndex
             );
-
+          case 'popover':
+            return popoverSelect.selectByOptionIndex(
+              ionCssSelector,
+              optionIndex
+            );
           default:
             throw new Error(`interface "${interfaceOfSelect}" not implemented`);
         }

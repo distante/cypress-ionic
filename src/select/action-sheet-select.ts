@@ -11,14 +11,11 @@ export class ActionSheetSelect implements IonSelectFunctions {
       .then((sheetGroup) => {
         const optionButtons = sheetGroup.children('button');
         const wantedOption = optionButtons[optionIndex];
-        const indexIsIndexOfDismissButton =
-          optionIndex === optionButtons.length;
-        if (!wantedOption || indexIsIndexOfDismissButton) {
-          throw new Error(
-            `There was no option with index ${optionIndex} on the give ionSelect. Total options: ${
-              optionButtons.length - 1
-            }`
-          );
+
+        if (!wantedOption) {
+          const msg = `There was no option with index ${optionIndex} on the give ionSelect. Total options: ${optionButtons.length}`;
+          console.warn(msg, optionButtons);
+          throw new Error(msg);
         }
 
         wantedOption.click();

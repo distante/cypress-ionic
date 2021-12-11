@@ -13,14 +13,14 @@ export class AlertSelect implements IonSelectFunctions {
         const wantedOption = optionButtons[optionIndex];
 
         if (!wantedOption) {
-          throw new Error(
-            `There was no option with index ${optionIndex} on the give ionSelect. Total options: ${optionButtons.length}`
-          );
+          const msg = `There was no option with index ${optionIndex} on the give ionSelect. Total options: ${optionButtons.length}`;
+          console.warn(msg, optionButtons);
+          throw new Error(msg);
         }
 
-        wantedOption.click();
-        return cy.get('ion-alert .alert-button-group button');
+        return cy.wrap(wantedOption).click();
       })
+      .then(() => cy.get('ion-alert .alert-button-group button'))
       .then((actionButtons) => {
         const okayButton = actionButtons[actionButtons.length - 1];
         console.log('okayButton', okayButton);

@@ -3,6 +3,7 @@ import { ionSelectCypress } from '@lib';
 const selectors = [
   'ion-select[interface=alert]',
   'ion-select[interface=action-sheet]',
+  'ion-select[interface=popover]',
 ];
 
 selectors.forEach((selector) => {
