@@ -1,16 +1,20 @@
 import { IonSelectFunctions } from './ion-select-functions.interface';
 
 export class PopoverSelect implements IonSelectFunctions {
-  selectByOptionIndex(ionCssSelector: string, optionIndex: number) {
-    return cy
-      .get(ionCssSelector)
+  selectByOptionText(
+    ionCssSelector: string,
+    optionText: string
+  ): Cypress.Chainable<void> {
+    return this.getOptionButtonsContainer(ionCssSelector)
+      .findByText(optionText)
+      .parent()
       .click()
-      .then(() => {
-        return cy.get('ion-popover ion-select-popover ion-radio-group').first();
-      })
-      .then((radioGroup) => {
-        console.log('radioGroup', radioGroup);
-        const optionItems = radioGroup.children('ion-item');
+      .then(() => cy.wrap(void 0));
+  }
+
+  selectByOptionIndex(ionCssSelector: string, optionIndex: number) {
+    return this.getOptionsButtons(ionCssSelector)
+      .then((optionItems) => {
         const wantedOption = optionItems[optionIndex];
 
         if (!wantedOption) {
@@ -24,5 +28,22 @@ export class PopoverSelect implements IonSelectFunctions {
         return cy.wrap(wantedOption).click();
       })
       .then(() => cy.wrap(void 0));
+  }
+
+  private getOptionButtonsContainer(
+    ionCssSelector: string
+  ): Cypress.Chainable<JQuery<HTMLElement>> {
+    return cy
+      .get(ionCssSelector)
+      .click()
+      .then(() => {
+        return cy.get('ion-popover ion-select-popover ion-radio-group').first();
+      });
+  }
+
+  private getOptionsButtons(
+    ionCssSelector: string
+  ): Cypress.Chainable<JQuery<HTMLElement>> {
+    return this.getOptionButtonsContainer(ionCssSelector).children('ion-item');
   }
 }

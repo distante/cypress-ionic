@@ -22,5 +22,20 @@ selectors.forEach((selector) => {
           cy.get(selector).should('have.value', '2');
         });
     });
+
+    it('can select option by text', () => {
+      const wantedOptionText = '3';
+      cy.get(selector)
+        .first()
+        .then(() => {
+          return ionSelectCypress.selectByOptionText(
+            selector,
+            wantedOptionText
+          );
+        })
+        .then(() => {
+          cy.get(selector).should('have.value', wantedOptionText);
+        });
+    });
   });
 });

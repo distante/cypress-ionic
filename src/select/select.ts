@@ -1,4 +1,3 @@
-import { SelectInterface } from '@ionic/core/components';
 import { IonSelect } from '@ionic/core/components/ion-select';
 
 import { ActionSheetSelect } from './action-sheet-select';
@@ -11,35 +10,47 @@ const actionSheetSelect = new ActionSheetSelect();
 const popoverSelect = new PopoverSelect();
 
 class Select implements IonSelectFunctions {
-  #getSelectInterface(
+  #getSelectInterfaceImplementor(
     ionCssSelector: string
-  ): Cypress.Chainable<SelectInterface> {
+  ): Cypress.Chainable<IonSelectFunctions> {
     return cy
       .get<JQuery<IonSelect>>(ionCssSelector)
       .then(($ionSelectElement) => {
-        return $ionSelectElement[0].interface;
+        const interfaceOfSelect = $ionSelectElement[0].interface;
+        switch ($ionSelectElement[0].interface) {
+          case 'alert':
+            return alertSelect;
+          case 'action-sheet':
+            return actionSheetSelect;
+          case 'popover':
+            return popoverSelect;
+          default:
+            throw new Error(`interface "${interfaceOfSelect}" not implemented`);
+        }
       });
   }
 
   selectByOptionIndex(ionCssSelector: string, optionIndex: number) {
-    return this.#getSelectInterface(ionCssSelector).then(
-      (interfaceOfSelect) => {
-        switch (interfaceOfSelect) {
-          case 'alert':
-            return alertSelect.selectByOptionIndex(ionCssSelector, optionIndex);
-          case 'action-sheet':
-            return actionSheetSelect.selectByOptionIndex(
-              ionCssSelector,
-              optionIndex
-            );
-          case 'popover':
-            return popoverSelect.selectByOptionIndex(
-              ionCssSelector,
-              optionIndex
-            );
-          default:
-            throw new Error(`interface "${interfaceOfSelect}" not implemented`);
-        }
+    return this.#getSelectInterfaceImplementor(ionCssSelector).then(
+      (ionsSelectFunctionImplementor) => {
+        return ionsSelectFunctionImplementor.selectByOptionIndex(
+          ionCssSelector,
+          optionIndex
+        );
+      }
+    );
+  }
+
+  selectByOptionText(
+    ionCssSelector: string,
+    optionText: string
+  ): Cypress.Chainable<void> {
+    return this.#getSelectInterfaceImplementor(ionCssSelector).then(
+      (ionsSelectFunctionImplementor) => {
+        return ionsSelectFunctionImplementor.selectByOptionText(
+          ionCssSelector,
+          optionText
+        );
       }
     );
   }
