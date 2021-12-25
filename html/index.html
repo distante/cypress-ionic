@@ -74,6 +74,38 @@
           <ion-select-option value="3">3</ion-select-option>
         </ion-select>
       </ion-item>
+
+      <ion-item class="ion-range">
+        <ion-range
+          class="regular"
+          min="-100"
+          max="100"
+          value="50"
+          pin
+          color="secondary"
+        >
+          <div class="end-slot" slot="end">50</div>
+        </ion-range>
+      </ion-item>
+
+      <ion-item class="ion-range-steps">
+        <ion-range
+          min="-100"
+          max="100"
+          step="10"
+          value="50"
+          snaps
+          color="danger"
+        >
+          <div class="end-slot" slot="end">50</div>
+        </ion-range>
+      </ion-item>
+
+      <ion-item class="ion-range-dual">
+        <ion-range min="-100" max="100" dual-knobs pin color="dark">
+          <div class="end-slot" slot="end">-50/50</div>
+        </ion-range>
+      </ion-item>
     </main>
   </body>
 </html>
