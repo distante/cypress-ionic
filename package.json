@@ -5,9 +5,11 @@
   "main": "dist/index.js",
   "scripts": {
     "serve": "node serve.mjs",
+    "develop": "start-server-and-test serve http://localhost:3999 test-open",
     "prepare": "husky install",
+    "test-open": "cypress open",
     "test": "cypress run",
-    "ci": "start-server-and-test serve"
+    "ci": "start-server-and-test serve http://localhost:3999 test"
   },
   "repository": {
     "type": "git",

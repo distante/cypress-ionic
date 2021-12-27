@@ -5,6 +5,7 @@ liveServer.start({
   root: './html',
   host: 'localhost',
   port: '3999',
+  open: false,
   ignore: 'src,cypress',
   mount: [
     ['/node_modules', './node_modules'],
