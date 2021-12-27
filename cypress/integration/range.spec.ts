@@ -55,10 +55,9 @@ selectorAndValues.forEach((selectorAndValue) => {
         );
       });
 
-      ionRangeCypress.moveToValue(
-        selectorAndValue.selector,
-        selectorAndValue.wantedValue
-      );
+      ionRangeCypress.moveToValue(selectorAndValue.selector, {
+        targetValue: selectorAndValue.wantedValue,
+      });
 
       cy.get(selectorAndValue.selector).should((item$) => {
         expect(stringify((<IonRange>item$[0]).value)).to.eq(

@@ -1,4 +1,5 @@
 import { IonSelect } from '@ionic/core/components/ion-select';
+import { CypressIonicReturn, SupportedSelectors } from '../../interfaces';
 
 import { ActionSheetSelect } from './action-sheet-select';
 import { AlertSelect } from './alert-select';
@@ -30,11 +31,11 @@ class Select implements IonSelectFunctions {
       });
   }
 
-  selectByOptionIndex(ionCssSelector: string, optionIndex: number) {
-    return this.#getSelectInterfaceImplementor(ionCssSelector).then(
+  selectByOptionIndex(selector: SupportedSelectors, optionIndex: number) {
+    return this.#getSelectInterfaceImplementor(selector).then(
       (ionsSelectFunctionImplementor) => {
         return ionsSelectFunctionImplementor.selectByOptionIndex(
-          ionCssSelector,
+          selector,
           optionIndex
         );
       }
@@ -42,13 +43,13 @@ class Select implements IonSelectFunctions {
   }
 
   selectByOptionText(
-    ionCssSelector: string,
+    selector: SupportedSelectors,
     optionText: string
-  ): Cypress.Chainable<void> {
-    return this.#getSelectInterfaceImplementor(ionCssSelector).then(
+  ): CypressIonicReturn<IonSelect> {
+    return this.#getSelectInterfaceImplementor(selector).then(
       (ionsSelectFunctionImplementor) => {
         return ionsSelectFunctionImplementor.selectByOptionText(
-          ionCssSelector,
+          selector,
           optionText
         );
       }
@@ -56,4 +57,4 @@ class Select implements IonSelectFunctions {
   }
 }
 
-export const ionSelectCypress: IonSelectFunctions = new Select();
+export const ionSelectCypress = new Select();

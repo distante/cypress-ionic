@@ -11,7 +11,9 @@
     "sourceMap": true,
     "baseUrl": "./",
     "paths": {
-      "@lib": ["./src/index.ts"]
+      "@lib": ["./src/index.ts"],
+      "@interfaces": ["./src/interfaces/index.ts"],
+      "@helpers": ["./src/helpers/index.ts"]
     },
     "types": ["cypress", "node", "@testing-library/cypress"]
   }
