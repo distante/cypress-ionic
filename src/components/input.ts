@@ -1,13 +1,29 @@
-function getNativeInput(ionCssSelector: string) {
-  return cy.get(ionCssSelector).find('input');
+import { CypressIonicComponentClass, SupportedSelectors } from '@interfaces';
+import { IonInput } from '@ionic/core/components/ion-input';
+import { getFromSupportedSelector } from '@helpers';
+
+class IonInputCypress
+  implements CypressIonicComponentClass<IonInputCypress, IonInput>
+{
+  public write(selector: SupportedSelectors, text: string) {
+    return getFromSupportedSelector<IonInput>(selector).then(($ionInput) => {
+      return cy
+        .wrap($ionInput)
+        .find('input')
+        .type(text)
+        .then(() => $ionInput);
+    });
+  }
+
+  public clear(selector: SupportedSelectors) {
+    return getFromSupportedSelector<IonInput>(selector).then(($ionInput) => {
+      return cy
+        .wrap($ionInput)
+        .find('input')
+        .clear()
+        .then(() => $ionInput);
+    });
+  }
 }
 
-function write(ionCssSelector: string, text: string) {
-  return getNativeInput(ionCssSelector).type(text);
-}
-
-function clear(ionCssSelector: string) {
-  return getNativeInput(ionCssSelector).clear();
-}
-
-export const ionInputCypress = { write, clear, getNativeInput };
+export const ionInputCypress = new IonInputCypress();

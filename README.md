@@ -68,6 +68,10 @@ You can see the served host on `http://localhost:3999` with:
 - [html/index.html](/html/index.html) is the file with the supported components.
 - [html/assets/scripts.mjs](/html/assets/scripts.mjs) contains the Ionic initialization calls and some event listeners needed for testing.
 
+### Guidelines
+
+TODO.
+
 ## Pull requests are welcome
 
 ❤

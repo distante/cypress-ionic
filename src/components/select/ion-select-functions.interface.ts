@@ -1,14 +1,20 @@
 import { IonSelect } from '@ionic/core/components/ion-select';
-import { CypressIonicReturn } from '@interfaces';
+import {
+  CypressIonicComponentClass,
+  CypressIonicReturn,
+  SupportedSelectors,
+} from '@interfaces';
 
-export interface IonSelectFunctions {
-  selectByOptionIndex(
-    ionCssSelector: string,
+export abstract class IonSelectFunctions
+  implements CypressIonicComponentClass<IonSelectFunctions, IonSelect>
+{
+  abstract selectByOptionIndex(
+    selector: SupportedSelectors,
     optionIndex: number
   ): CypressIonicReturn<IonSelect>;
 
-  selectByOptionText(
-    ionCssSelector: string,
+  abstract selectByOptionText(
+    selector: SupportedSelectors,
     optionText: string
   ): CypressIonicReturn<IonSelect>;
 }

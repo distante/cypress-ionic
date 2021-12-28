@@ -1,7 +1,11 @@
 import { IonRange } from '@ionic/core/components/ion-range';
 import { RangeValue } from '@ionic/core/dist/types/interface';
 
-import { CypressIonicReturn, SupportedSelectors } from '@interfaces';
+import {
+  CypressIonicComponentClass,
+  CypressIonicReturn,
+  SupportedSelectors,
+} from '@interfaces';
 import { getFromSupportedSelector } from '@helpers';
 
 type GenericIonRange<T> = IonRange & {
@@ -22,7 +26,10 @@ enum RangeKnobSelector {
 export interface IonRangeCypressMoveToValueOptions<T = RangeValue> {
   targetValue: T;
 }
-class IonRangeCypress {
+
+class IonRangeCypress
+  implements CypressIonicComponentClass<IonRangeCypress, IonRange>
+{
   /**
    * Sets the value or the {@link IonRange} programmatically and triggers
    * their `ionChangeEvent`. Use this is if middle events are not important
