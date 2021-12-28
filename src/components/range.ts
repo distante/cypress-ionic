@@ -1,5 +1,5 @@
-import { IonRange } from '@ionic/core/components/ion-range';
-import { RangeValue } from '@ionic/core/dist/types/interface';
+import { IonRange } from 'currentIonicVersion/components/ion-range';
+import { RangeValue } from 'currentIonicVersion/dist/types/interface';
 
 import {
   CypressIonicComponentClass,

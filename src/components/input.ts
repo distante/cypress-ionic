@@ -1,5 +1,5 @@
 import { CypressIonicComponentClass, SupportedSelectors } from '@interfaces';
-import { IonInput } from '@ionic/core/components/ion-input';
+import { IonInput } from 'currentIonicVersion/components/ion-input';
 import { getFromSupportedSelector } from '@helpers';
 
 class IonInputCypress

@@ -1,11 +1,7 @@
-import { setupConfig } from '/node_modules/@ionic/core/dist/esm/index.js';
-import { defineCustomElements } from '/node_modules/@ionic/core/dist/esm/loader.js';
+import { setupConfig } from '/node_modules/currentIonicVersion/dist/esm/index.js';
+import { defineCustomElements } from '/node_modules/currentIonicVersion/dist/esm/loader.js';
 import { convertToTestString } from '/test-helpers/test-helpers.js';
 
-setupConfig({
-  mode: 'md',
-  animate: false,
-});
 defineCustomElements(window).then(() => {
   /* Ionic is loaded! */
 

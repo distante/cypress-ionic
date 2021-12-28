@@ -24,12 +24,11 @@ tmp/
 temp/
 hooks/
 platforms/
-plugins/
+./plugins/
 plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
-src/assets/audio/audio_file.mp3
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
@@ -41,3 +40,4 @@ dist/
 dist-bundles/
 dist-zips/
 cypress/videos
+cypress/screenshots
