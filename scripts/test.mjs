@@ -28,7 +28,7 @@ function restoreIonicVersionIfNeeded() {
 
 console.log(greenBoldColor('\nRUNNING TESTS ON ALL SUPPORTED IONIC VERSIONS'));
 
-[...olderVersions].forEach((ionicVersionCode) => {
+[currentIonicVersionCode, ...olderVersions].forEach((ionicVersionCode) => {
   const ionicInstallString = `@ionic/core@${ionicVersionCode}`;
   console.log(
     greenBoldColor(`\n- Testing with Ionic: ${ionicInstallString}\n`)
