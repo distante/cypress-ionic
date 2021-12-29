@@ -1,1 +1,3 @@
-export type SupportedSelectors = string;
+export type SupportedSelectors =
+  | string
+  | Cypress.Chainable<JQuery<HTMLElement>>;

@@ -7,7 +7,7 @@ describe('Ion Input', () => {
     cy.visit('./');
   });
 
-  it('can be written on', () => {
+  it('can be written on by string selector', () => {
     cy.get(selector)
       .first()
       .then(($ionInput) => {
