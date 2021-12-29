@@ -1,7 +1,7 @@
 import { IonSelectFunctions } from './ion-select-functions.interface';
 import { getFromSupportedSelector } from '@helpers';
 import { SupportedSelectors } from '@interfaces';
-import { IonSelect } from 'currentIonicVersion/components/ion-select';
+import { IonSelect } from '@ionic/core/components/ion-select';
 
 export class AlertSelect implements IonSelectFunctions {
   selectByOptionIndex(selector: SupportedSelectors, optionIndex: number) {

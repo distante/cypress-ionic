@@ -1,4 +1,4 @@
-import { IonSelect } from 'currentIonicVersion/components/ion-select';
+import { IonSelect } from '@ionic/core/components/ion-select';
 import {
   CypressIonicComponentClass,
   CypressIonicReturn,

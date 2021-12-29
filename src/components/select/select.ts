@@ -1,4 +1,4 @@
-import { IonSelect } from 'currentIonicVersion/components/ion-select';
+import { IonSelect } from '@ionic/core/components/ion-select';
 import { CypressIonicReturn, SupportedSelectors } from '../../interfaces';
 
 import { ActionSheetSelect } from './action-sheet-select';

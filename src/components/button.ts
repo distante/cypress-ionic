@@ -1,6 +1,6 @@
 import { getFromSupportedSelector } from '@helpers';
 import { CypressIonicComponentClass, SupportedSelectors } from '@interfaces';
-import { IonButton } from 'currentIonicVersion/components/ion-button';
+import { IonButton } from '@ionic/core/components/ion-button';
 
 class IonButtonCypress
   implements CypressIonicComponentClass<IonButtonCypress, IonButton>
