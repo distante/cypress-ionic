@@ -1,23 +1,16 @@
-import { IonSelectFunctions } from './ion-select-functions.interface';
+import { IonSelectFunctions } from './ion-select-functions.abstract';
 import { getFromSupportedSelector } from '@helpers';
 import { SupportedSelectors } from '@interfaces';
 import { IonSelect } from '@ionic/core/components/ion-select';
 
-export class AlertSelect implements IonSelectFunctions {
+export class AlertSelect extends IonSelectFunctions {
+  constructor() {
+    super('ion-alert [role="radiogroup"]', 'button');
+  }
+
   selectByOptionIndex(selector: SupportedSelectors, optionIndex: number) {
     return getFromSupportedSelector<IonSelect>(selector).then(($ionSelect) => {
-      return this.getOptionButtons($ionSelect)
-        .then((optionButtons) => {
-          const wantedOption = optionButtons[optionIndex];
-
-          if (!wantedOption) {
-            const msg = `There was no option with index ${optionIndex} on the give ionSelect. Total options: ${optionButtons.length}`;
-            console.warn(msg, optionButtons);
-            throw new Error(msg);
-          }
-
-          return cy.wrap(wantedOption).click();
-        })
+      return this.clickOnWantedOption($ionSelect, optionIndex)
         .then(() => this.clickOkOnAlert())
         .then(() => $ionSelect);
     });
@@ -34,22 +27,6 @@ export class AlertSelect implements IonSelectFunctions {
         .then(() => this.clickOkOnAlert())
         .then(() => $ionSelect);
     });
-  }
-
-  private getOptionButtonsContainer(
-    $ionSelect: JQuery<IonSelect>
-  ): Cypress.Chainable<JQuery<HTMLElement>> {
-    return cy
-      .wrap($ionSelect[0])
-      .click()
-      .get('ion-alert [role="radiogroup"]')
-      .first();
-  }
-
-  private getOptionButtons(
-    $ionSelect: JQuery<IonSelect>
-  ): Cypress.Chainable<JQuery<HTMLButtonElement>> {
-    return this.getOptionButtonsContainer($ionSelect).children('button');
   }
 
   private clickOkOnAlert(): Cypress.Chainable<void> {

@@ -7,7 +7,7 @@ A set of helper functions to tests your Ionic apps with Cypress
 
 <div align="center">
 
-[![Build Status](https://github.com/distante/cypress-ionic/actions/workflows/node.js.yml/badge.svg)](https://github.com/distante/cypress-ionic/actions/workflows/node.js.yml) [![codecov](https://codecov.io/gh/distante/cypress-ionic/branch/master/graph/badge.svg)](https://codecov.io/gh/distante/cypress-ionic) [![Known Vulnerabilities](https://snyk.io/test/github/distante/saninn/badge.svg?targetFile=package.json)](https://snyk.io/test/github/distante/saninn?targetFile=package.json) [![Maintainability](https://api.codeclimate.com/v1/badges/f7d99fcb6516cac26fde/maintainability)](https://codeclimate.com/github/distante/cypress-ionic/maintainability)
+[![Build Status](https://github.com/distante/cypress-ionic/actions/workflows/node.js.yml/badge.svg)](https://github.com/distante/cypress-ionic/actions/workflows/node.js.yml) [![Known Vulnerabilities](https://snyk.io/test/github/distante/cypress-ionic/badge.svg?targetFile=package.json)](https://snyk.io/test/github/distante/cypress-ionic?targetFile=package.json) [![Maintainability](https://api.codeclimate.com/v1/badges/171b458d255d4112ffd6/maintainability)](https://codeclimate.com/github/distante/cypress-ionic/maintainability)
 
 </div>
 </div>

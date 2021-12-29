@@ -3,7 +3,7 @@ import { CypressIonicReturn, SupportedSelectors } from '../../interfaces';
 
 import { ActionSheetSelect } from './action-sheet-select';
 import { AlertSelect } from './alert-select';
-import { IonSelectFunctions } from './ion-select-functions.interface';
+import { IonSelectFunctions } from './ion-select-functions.abstract';
 import { PopoverSelect } from './popover-select';
 
 const alertSelect = new AlertSelect();
