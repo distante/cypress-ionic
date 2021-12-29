@@ -15,6 +15,13 @@ class IonButtonCypress
         .then(() => $ionButton);
     });
   }
+
+  public clickByText(text: string) {
+    return cy
+      .findByText(text)
+      .closest<IonButton>('ion-button') // Where it is contained, because labels are hidden
+      .click({ force: true });
+  }
 }
 
 export const ionButtonCypress = new IonButtonCypress();

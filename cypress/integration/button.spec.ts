@@ -7,7 +7,7 @@ describe('Ion Button', () => {
     cy.visit('./');
   });
 
-  it('should be clicked', () => {
+  it('should be clicked by css selector', () => {
     cy.get(selector)
       .first()
       .then((ionButton) => {
@@ -16,6 +16,20 @@ describe('Ion Button', () => {
         );
 
         ionButtonCypress.click(selector);
+
+        cy.contains(wantedText, { matchCase: false }).should('exist');
+      });
+  });
+
+  it('should be clicked by text', () => {
+    cy.get(selector)
+      .first()
+      .then((ionButton) => {
+        const wantedText = testHelpers.convertToTestString(
+          ionButton[0].innerText
+        );
+
+        ionButtonCypress.clickByText('ion-button text');
 
         cy.contains(wantedText, { matchCase: false }).should('exist');
       });
