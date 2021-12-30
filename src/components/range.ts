@@ -212,6 +212,18 @@ class IonRangeCypress
       };
     }
 
+    return this.fixTargetValueForObjectValue(
+      currentValue,
+      knobSelector,
+      targetValue
+    );
+  }
+
+  private fixTargetValueForObjectValue(
+    currentValue: IonRangeObjectValue,
+    knobSelector: RangeKnobSelector,
+    targetValue: number
+  ): { targetValue: number; currentValue: number } | null {
     if (knobSelector === RangeKnobSelector.Lower) {
       if (currentValue.lower === targetValue) {
         return null;
