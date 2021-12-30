@@ -16,10 +16,11 @@ class IonButtonCypress
     });
   }
 
-  public clickByText(text: string) {
+  // @ts-expect-error This is a special case
+  public clickByText(text: string): Cypress.Chainable<JQuery<IonButton>> {
     return cy
       .findByText(text)
-      .closest<IonButton>('ion-button') // Where it is contained, because labels are hidden
+      .closest<IonButton>('ion-button')
       .click({ force: true });
   }
 }
