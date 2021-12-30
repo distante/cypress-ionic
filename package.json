@@ -12,7 +12,6 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "postinstall": "npm run build",
     "serve": "node ./scripts/serve.mjs",
     "develop": "start-server-and-test serve http://localhost:3999 test-open",
     "test-open": "cypress open",
@@ -21,7 +20,14 @@
     "ci": "node --experimental-json-modules ./scripts/test.mjs",
     "build": "npx tsc -p .",
     "tsc:check": "tsc --noEmit",
-    "prettier:check": "prettier --config ./.prettierrc ./src --check"
+    "prettier:check": "prettier --config ./.prettierrc ./src --check",
+    "release": "release-it --verbose --ci",
+    "release:patch": "release-it patch --verbose --ci",
+    "release:minor": "release-it minor --verbose --ci",
+    "release:major": "release-it major --verbose --ci",
+    "release:prepatch": "release-it prepatch --verbose --ci",
+    "release:preminor": "release-it preminor --verbose --ci",
+    "release:premajor": "release-it premajor --verbose --ci"
   },
   "repository": {
     "type": "git",
@@ -44,11 +50,11 @@
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
     "@compodoc/live-server": "^1.2.2",
+    "@ionic/core": "^6.0.0",
     "@testing-library/cypress": "^8.0.2",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "chalk": "^5.0.0",
-    "@ionic/core": "^6.0.0",
     "cypress": "^9.1.1",
     "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
@@ -57,6 +63,7 @@
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.2",
+    "release-it": "^14.11.8",
     "start-server-and-test": "^1.14.0",
     "tslib": "^2.3.1",
     "typescript": "^4.5.2"
@@ -68,5 +75,22 @@
   },
   "oldSupportedVersions": {
     "ionicCore5": "^5.0.0"
+  },
+  "release-it": {
+    "hooks": {
+      "before:init": "npm run full-test && npm run build",
+      "after:bump": "",
+      "after:release": "echo Successfully released ${name} v${version} to https://${repo.host}/${repo.repository}/releases/tag/v${version}"
+    },
+    "git": {
+      "commitMessage": "release: v${version}",
+      "tagName": "v${version}",
+      "tagAnnotation": "Release v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "${version}",
+      "assets": []
+    }
   }
 }
