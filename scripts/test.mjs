@@ -12,13 +12,21 @@ const currentIonicVersionCode = packageJson.devDependencies['@ionic/core'];
 
 const olderVersions = Object.values(packageJson.oldSupportedVersions);
 
+process.on('SIGINT', function () {
+  console.log(warningColor('Caught interrupt signal, preparing exit!'));
+  restoreIonicVersionIfNeeded();
+
+  console.log(errorColor('Process was terminated by user'));
+  process.exit();
+});
+
 function restoreIonicVersionIfNeeded() {
   if (runningOnCI) {
     return;
   }
   console.log(
     warningColor(
-      `Restoring current @ionic/core version to ${currentIonicVersionCode}`
+      `\nRestoring current @ionic/core version to ${currentIonicVersionCode}\n`
     )
   );
   execSync(`npm i @ionic/core@${currentIonicVersionCode} --no-save`, {
@@ -44,12 +52,12 @@ console.log(greenBoldColor('\nRUNNING TESTS ON ALL SUPPORTED IONIC VERSIONS'));
 
     const message = `test run for ${ionicInstallString} FAILED`;
     console.log(
-      `\n❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️\n`
+      `\n❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️`
     );
     console.log(
-      `❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️`
+      `❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️\n`
     );
-    console.log(errorColor(`    ${message}`));
+    console.log(errorColor(`    ${message}\n`));
     console.log(
       `❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️❗️`
     );
