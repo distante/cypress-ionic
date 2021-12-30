@@ -1,8 +1,13 @@
-src/
-node_module/
+node_modules/
 .vscode/
 scripts/
 .editorconfig
+.github/
+.husky/
+.coverage/
 dist-bundles/
 dist-zips/
 docs/
+scripts/
+test-helpers/
+html/
