@@ -19,7 +19,9 @@
     "test": "cypress run",
     "full-test": "start-server-and-test serve http://localhost:3999 test",
     "ci": "node --experimental-json-modules ./scripts/test.mjs",
-    "build": "npx tsc -p ."
+    "build": "npx tsc -p .",
+    "tsc:check": "tsc --noEmit",
+    "prettier:check": "prettier --config ./.prettierrc ./src --check"
   },
   "repository": {
     "type": "git",
