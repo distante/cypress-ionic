@@ -22,7 +22,7 @@ With this library you can just give the css selector of the Ionic Element, or th
 
 ## Install
 
-`npm install @saninn/cypress-ionic`.
+`npm install @saninn/cypress-ionic --save-dev`.
 
 Then enable ShadowDom access on your Cypress Project:
 
@@ -68,9 +68,10 @@ You can see the served host on `http://localhost:3999` with:
 - [html/index.html](/html/index.html) is the file with the supported components.
 - [html/assets/scripts.mjs](/html/assets/scripts.mjs) contains the Ionic initialization calls and some event listeners needed for testing.
 
-### Guidelines
+##TODO.
 
-TODO.
+- Dev Guidelines
+- More components
 
 ## Pull requests are welcome
 

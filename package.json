@@ -3,6 +3,7 @@
   "version": "0.0.3-0",
   "description": "A set of functions to help you interact with Ionic Framework elements in your Cypress tests",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -11,14 +12,14 @@
     "access": "public"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky install && ts-patch install -s",
     "serve": "node ./scripts/serve.mjs",
     "develop": "start-server-and-test serve http://localhost:3999 test-open",
     "test-open": "cypress open",
     "test": "cypress run",
     "full-test": "start-server-and-test serve http://localhost:3999 test",
     "ci": "node --experimental-json-modules ./scripts/test.mjs",
-    "build": "npx tsc -p .",
+    "build": "tsc --project tsconfig.json",
     "tsc:check": "tsc --noEmit",
     "prettier:check": "prettier --config ./.prettierrc ./src --check",
     "release": "release-it --verbose --ci",
@@ -65,8 +66,10 @@
     "pretty-quick": "^3.1.2",
     "release-it": "^14.11.8",
     "start-server-and-test": "^1.14.0",
+    "ts-patch": "^2.0.1",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.2",
+    "typescript-transform-paths": "^3.3.1"
   },
   "peerDependencies": {
     "@ionic/core": ">= 5.0.0",

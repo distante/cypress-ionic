@@ -17,7 +17,15 @@
       "@interfaces": ["./src/interfaces/index.ts"],
       "@helpers": ["./src/helpers/index.ts"]
     },
-    "types": ["cypress", "node", "@testing-library/cypress"]
+    "types": ["cypress", "node", "@testing-library/cypress"],
+    // Note: To transform paths for both the output .js and .d.ts files, you need both of the below entries
+    "plugins": [
+      // Transform paths in output .js files
+      { "transform": "typescript-transform-paths" },
+
+      // Transform paths in output .d.ts files (Include this line if you output declarations files)
+      { "transform": "typescript-transform-paths", "afterDeclarations": true }
+    ]
   },
   "include": ["./src"]
 }
