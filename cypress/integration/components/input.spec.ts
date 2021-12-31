@@ -1,5 +1,5 @@
 import { ionInputCypress } from '@lib';
-import * as testHelpers from '../../test-helpers/test-helpers.js';
+import * as testHelpers from '../../../test-helpers/test-helpers.js';
 
 describe('Ion Input', () => {
   const selector = 'ion-input';

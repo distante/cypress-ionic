@@ -25,4 +25,13 @@ describe('Get From Supported Selector', () => {
       'Label With Test Id'
     );
   });
+
+  it('gets an item when given an JQueryObject', () => {
+    cy.get('.testing-class').then(($jQueryObject) => {
+      getFromSupportedSelector($jQueryObject).should(
+        'have.text',
+        'Label With Class'
+      );
+    });
+  });
 });

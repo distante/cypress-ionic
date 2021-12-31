@@ -7,5 +7,15 @@ export function getFromSupportedSelector<T extends HTMLElement>(
     return cy.get<T>(selector);
   }
 
+  if (isJQuery<T>(selector)) {
+    return cy.wrap(selector);
+  }
+
   return selector as CypressIonicReturn<T>;
+}
+
+function isJQuery<T extends HTMLElement>(
+  selector: SupportedSelectors
+): selector is JQuery<T> {
+  return !!(<JQuery<T>>selector).jquery;
 }

@@ -4,7 +4,7 @@
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": ["*.ts", "*.js"],
+      "files": ["**/*.ts", "*.js"],
       "parserOptions": {
         "project": ["./tsconfig.json"]
       },
