@@ -8,12 +8,12 @@ const selectorAndValues: Array<{
   wantedLabel: string;
 }> = [
   { selector: 'ion-range.regular', wantedValue: 70, wantedLabel: '70' },
-  { selector: 'ion-range[step]', wantedValue: 70, wantedLabel: '70' },
-  {
-    selector: 'ion-range[dual-knobs]',
-    wantedValue: { upper: 70, lower: -70 },
-    wantedLabel: '-70/70',
-  },
+  // { selector: 'ion-range[step]', wantedValue: 70, wantedLabel: '70' },
+  // {
+  //   selector: 'ion-range[dual-knobs]',
+  //   wantedValue: { upper: 70, lower: -70 },
+  //   wantedLabel: '-70/70',
+  // },
 ];
 
 selectorAndValues.forEach((selectorAndValue) => {
@@ -22,7 +22,7 @@ selectorAndValues.forEach((selectorAndValue) => {
       cy.visit('./');
     });
 
-    it('can be changed by set value', () => {
+    it.only('can be changed by set value', () => {
       cy.get(selectorAndValue.selector).should((item$) => {
         expect(stringify((<IonRange>item$[0]).value)).not.to.eq(
           stringify(selectorAndValue.wantedValue)

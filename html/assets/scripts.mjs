@@ -18,6 +18,7 @@ defineCustomElements(window).then(() => {
   const rangesIntervals = new Array(ranges.length);
   document.querySelectorAll('ion-range').forEach((ionRange, i) => {
     ionRange.addEventListener('ionChange', (event) => {
+      console.log('ionRange ionChange event', event);
       clearInterval(rangesIntervals[i]);
       const targetIonRange = event.target;
 
@@ -31,13 +32,13 @@ defineCustomElements(window).then(() => {
         clearInterval(rangesIntervals[i]);
         rangesIntervals[i] = undefined;
 
-        let value = ionRange.value;
+        let eventValue = event.detail.value;
 
-        if (typeof value === 'object') {
-          value = `${ionRange.value.lower}/${ionRange.value.upper}`;
+        if (typeof eventValue === 'object') {
+          eventValue = `${eventValue.lower}/${eventValue.upper}`;
         }
 
-        slot.assignedNodes()[0].innerText = value;
+        slot.assignedNodes()[0].innerText = eventValue;
       }, 100);
     });
   });

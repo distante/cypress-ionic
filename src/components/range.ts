@@ -1,5 +1,8 @@
 import { IonRange } from '@ionic/core/components/ion-range';
-import { RangeValue } from '@ionic/core/dist/types/interface';
+import {
+  RangeChangeEventDetail,
+  RangeValue,
+} from '@ionic/core/dist/types/interface';
 
 import {
   CypressIonicComponentClass,
@@ -43,7 +46,12 @@ class IonRangeCypress
       ($ionRange) => {
         const ionRange = $ionRange[0];
         ionRange.value = value;
-        const event = new CustomEvent('ionChange', { detail: value });
+        const detail: RangeChangeEventDetail = { value };
+        const event = new CustomEvent('ionChange', { detail });
+
+        /**
+         * This is not direct tested, but it is needed for angular events.
+         */
         ionRange.dispatchEvent(event);
 
         return $ionRange;
