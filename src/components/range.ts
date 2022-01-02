@@ -60,7 +60,12 @@ class IonRangeCypress
   }
 
   /**
-   * Will move the {@link IonRange} value one by one (uses key events)
+   * Will move the {@link IonRange} value one by one (uses key events),
+   * If the target value exceeds the {@link IonRange.min min} or {@link IonRange.max max}
+   * values they will be used as target.
+   *
+   * For example, asking this function to move to `200` when  the {@link IonRange.max max} value
+   * is `150` will move the knob until `150`.
    */
   public moveToValue(
     ionCssSelector: SupportedSelectors,
