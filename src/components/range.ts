@@ -214,6 +214,10 @@ class IonRangeCypress
         return null;
       }
 
+      if (this.outOfRange(targetValue, ionRange)) {
+        return null;
+      }
+
       return {
         targetValue,
         currentValue,
@@ -223,15 +227,21 @@ class IonRangeCypress
     return this.fixTargetValueForObjectValue(
       currentValue,
       knobSelector,
-      targetValue
+      targetValue,
+      ionRange
     );
   }
 
   private fixTargetValueForObjectValue(
     currentValue: IonRangeObjectValue,
     knobSelector: RangeKnobSelector,
-    targetValue: number
+    targetValue: number,
+    ionRange: IonRange
   ): { targetValue: number; currentValue: number } | null {
+    if (this.outOfRange(targetValue, ionRange)) {
+      return null;
+    }
+
     if (knobSelector === RangeKnobSelector.Lower) {
       if (currentValue.lower === targetValue) {
         return null;
@@ -257,6 +267,10 @@ class IonRangeCypress
     options: IonRangeCypressMoveToValueOptions
   ): options is IonRangeCypressMoveToValueOptions<number> {
     return typeof options.targetValue === 'number';
+  }
+
+  private outOfRange(value: number, ionRange: IonRange): boolean {
+    return value < ionRange.min || value > ionRange.max;
   }
 }
 
