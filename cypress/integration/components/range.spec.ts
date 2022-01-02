@@ -125,7 +125,9 @@ describe('moving it to values beyond their supported value does not hangs', () =
       cy.visit('./');
     });
 
-    it(selectorAndValue.selector, () => {
+    it(`${selectorAndValue.selector}, target: ${stringify(
+      selectorAndValue.outOfRangeValue
+    )}`, () => {
       ionRangeCypress.setValue(
         selectorAndValue.selector,
         selectorAndValue.initialValue
