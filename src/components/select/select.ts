@@ -57,6 +57,22 @@ class Select implements IIonSelectFunctions {
       }
     );
   }
+
+  findIonSelectByLabelText(text: string): CypressIonicReturn<IonSelect> {
+    return cy.get('ion-select').then(($ionSelects) => {
+      const ionSelectElements = $ionSelects.filter(function () {
+        return !!this.getAttribute('aria-label')?.includes(text);
+      });
+
+      if (ionSelectElements.length > 1) {
+        cy.log(
+          `More than one IonSelect element was found with the text "${text}", using the first one`
+        );
+      }
+
+      return ionSelectElements[0];
+    });
+  }
 }
 
 export const ionSelectCypress = new Select();
