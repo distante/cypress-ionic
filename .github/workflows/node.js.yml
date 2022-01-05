@@ -63,14 +63,14 @@ jobs:
 
       - name: Save screenshots folder
         uses: actions/upload-artifact@v2
-        if: failure()
+        if: always()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
       - name: Save videos folder
         uses: actions/upload-artifact@v2
-        if: failure()
+        if: always()
         with:
           name: cypress-videos
           path: cypress/videos
@@ -83,4 +83,4 @@ jobs:
       - run: |
           npm ci
           npx cypress info
-          npm run ci || npm run ci
+          npm run ci
