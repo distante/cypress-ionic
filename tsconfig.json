@@ -27,5 +27,6 @@
       { "transform": "typescript-transform-paths", "afterDeclarations": true }
     ]
   },
+  "exclude": ["**/.eslint.js"],
   "include": ["./src"]
 }

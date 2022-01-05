@@ -3,5 +3,6 @@ import { SupportedSelectors } from './supported-selectors.interface';
 
 export type CypressIonicFunction<TReturn> = (
   cssSelector: SupportedSelectors,
-  options?: any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options?: any // Any because we do not know what will this be.
 ) => CypressIonicReturn<TReturn>;

@@ -4,15 +4,8 @@
     "sourceMap": false,
     "outDir": "../../dist/out-tsc",
     "allowJs": true,
-    "types": [
-      "cypress",
-      "node",
-      "@testing-library/cypress"
-    ]
+    "types": ["cypress", "node", "@testing-library/cypress"]
   },
-  "include": [
-    "../node_modules/cypress",
-    "./**/*.ts"
-  ],
+  "include": ["../node_modules/cypress", "./**/*.ts", "./**/*.js"],
   "exclude": ["node_modules"]
 }

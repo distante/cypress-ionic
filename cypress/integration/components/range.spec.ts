@@ -2,6 +2,23 @@ import { RangeValue } from '@ionic/core';
 import { IonRange } from '@ionic/core/components/ion-range';
 import { ionRangeCypress } from '@lib';
 
+function getEndSlotInnerTextOfIonRange(ionRange: IonRange): string {
+  const ionRangeShadow = ionRange.shadowRoot;
+  if (!ionRangeShadow) {
+    return 'IonRange did not had any Shadow Root ';
+  }
+
+  const slot =
+    ionRangeShadow.querySelector<HTMLSlotElement>('slot[name="end"]');
+  if (!slot) {
+    return 'IonRange did not had any end Slot ';
+  }
+
+  const slotText = (slot.assignedNodes()[0] as HTMLElement).innerText;
+
+  return slotText;
+}
+
 const selectorAndValues: Array<{
   selector: string;
   wantedValue: RangeValue;
@@ -41,9 +58,7 @@ selectorAndValues.forEach((selectorAndValue) => {
       });
 
       cy.get<IonRange>(selectorAndValue.selector).should((item$) => {
-        const currentLabel = (<any>item$[0]).shadowRoot
-          ?.querySelector('slot[name="end"]')
-          .assignedNodes()[0].innerText;
+        const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
         expect(currentLabel).to.eq(selectorAndValue.wantedLabel);
       });
     });
@@ -66,9 +81,7 @@ selectorAndValues.forEach((selectorAndValue) => {
       });
 
       cy.get<IonRange>(selectorAndValue.selector).should((item$) => {
-        const currentLabel = (<any>item$[0]).shadowRoot
-          ?.querySelector('slot[name="end"]')
-          .assignedNodes()[0].innerText;
+        const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
         expect(currentLabel).to.eq(selectorAndValue.wantedLabel);
       });
     });
@@ -150,9 +163,7 @@ describe('moving it to values beyond their supported value does not hangs', () =
       });
 
       cy.get<IonRange>(selectorAndValue.selector).should((item$) => {
-        const currentLabel = (<any>item$[0]).shadowRoot
-          ?.querySelector('slot[name="end"]')
-          .assignedNodes()[0].innerText;
+        const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
         expect(currentLabel).to.eq(selectorAndValue.wantedLabel);
       });
     });
