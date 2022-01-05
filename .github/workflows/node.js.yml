@@ -28,6 +28,7 @@ jobs:
           npm ci
           npm run tsc:check
           npm run prettier:check
+
   build:
     runs-on: ubuntu-latest
 
@@ -57,11 +58,29 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Save screenshots folder
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: Save videos folder
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
       - name: Run Test on Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+
       - run: |
           npm ci
+          npx cypress info
           npm run ci || npm run ci

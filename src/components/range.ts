@@ -220,6 +220,7 @@ class IonRangeCypress
       }
 
       if (this.outOfRange(targetValue, ionRange)) {
+        cy.log(`targetValue "${targetValue} is out of range`);
         return null;
       }
 
