@@ -81,7 +81,7 @@
   },
   "release-it": {
     "hooks": {
-      "before:init": "npm run full-test && npm run build",
+      "before:init": "npm run build && npm run ci",
       "after:bump": "",
       "after:release": "echo Successfully released ${name} v${version} to https://${repo.host}/${repo.repository}/releases/tag/v${version}"
     },

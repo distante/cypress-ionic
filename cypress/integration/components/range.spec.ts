@@ -155,17 +155,19 @@ describe('moving it to values beyond their supported value does not hangs', () =
         targetValue: selectorAndValue.outOfRangeValue,
       }); // Move to wrong target
 
-      // Should call this
-      cy.get(selectorAndValue.selector).should((item$) => {
-        expect(stringify((<IonRange>item$[0]).value)).to.eq(
-          stringify(selectorAndValue.wantedValue)
-        );
-      });
+      // Should set correct value
+      cy.get(selectorAndValue.selector)
+        .then((item$) => {
+          return stringify((<IonRange>item$[0]).value);
+        })
+        .should('eq', stringify(selectorAndValue.wantedValue));
 
-      cy.get<IonRange>(selectorAndValue.selector).should((item$) => {
-        const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
-        expect(currentLabel).to.eq(selectorAndValue.wantedLabel);
-      });
+      cy.get<IonRange>(selectorAndValue.selector)
+        .then((item$) => {
+          const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
+          return currentLabel;
+        })
+        .should('eq', selectorAndValue.wantedLabel);
     });
   });
 });
