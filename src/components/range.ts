@@ -45,6 +45,9 @@ class IonRangeCypress
     return getFromSupportedSelector<IonRange>(ionCssSelector).then(
       ($ionRange) => {
         const ionRange = $ionRange[0];
+
+        value = this.normalizeRangeValue(value, ionRange);
+
         ionRange.value = value;
         const detail: RangeChangeEventDetail = { value };
         const event = new CustomEvent('ionChange', { detail });
@@ -54,7 +57,7 @@ class IonRangeCypress
          */
         ionRange.dispatchEvent(event);
 
-        return $ionRange;
+        return cy.wrap($ionRange);
       }
     );
   }
@@ -74,7 +77,10 @@ class IonRangeCypress
     return getFromSupportedSelector(ionCssSelector).then(($ionRange) => {
       const ionRange = $ionRange[0] as IonRange;
 
-      options.targetValue = this.normalizeValue(options.targetValue, ionRange);
+      options.targetValue = this.normalizeRangeValue(
+        options.targetValue,
+        ionRange
+      );
       if (this.isOptionNumber(options)) {
         return this.moveToNumberValue({
           ionRange,
@@ -266,7 +272,10 @@ class IonRangeCypress
   }
 
   /** If the wanted value is big, just set it to the max allowed */
-  private normalizeValue(value: RangeValue, ionRange: IonRange): RangeValue {
+  private normalizeRangeValue(
+    value: RangeValue,
+    ionRange: IonRange
+  ): RangeValue {
     if (typeof value === 'number') {
       return this.normalizeNumberValue(value, ionRange);
     }

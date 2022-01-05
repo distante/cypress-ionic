@@ -2,21 +2,12 @@ import { RangeValue } from '@ionic/core';
 import { IonRange } from '@ionic/core/components/ion-range';
 import { ionRangeCypress } from '@lib';
 
-function getEndSlotInnerTextOfIonRange(ionRange: IonRange): string {
-  const ionRangeShadow = ionRange.shadowRoot;
-  if (!ionRangeShadow) {
-    return 'IonRange did not had any Shadow Root ';
-  }
-
-  const slot =
-    ionRangeShadow.querySelector<HTMLSlotElement>('slot[name="end"]');
-  if (!slot) {
-    return 'IonRange did not had any end Slot ';
-  }
-
-  const slotText = (slot.assignedNodes()[0] as HTMLElement).innerText;
-
-  return slotText;
+function getIonRangeEndSlotElements(selector: string) {
+  return cy
+    .get<IonRange>(selector)
+    .shadow()
+    .find<HTMLSlotElement>('slot[name="end"]')
+    .then(($slot) => $slot[0].assignedElements());
 }
 
 const selectorAndValues: Array<{
@@ -57,10 +48,9 @@ selectorAndValues.forEach((selectorAndValue) => {
         );
       });
 
-      cy.get<IonRange>(selectorAndValue.selector).should((item$) => {
-        const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
-        expect(currentLabel).to.eq(selectorAndValue.wantedLabel);
-      });
+      getIonRangeEndSlotElements(selectorAndValue.selector).contains(
+        selectorAndValue.wantedLabel
+      );
     });
 
     it('can be changed by move value', () => {
@@ -80,15 +70,14 @@ selectorAndValues.forEach((selectorAndValue) => {
         );
       });
 
-      cy.get<IonRange>(selectorAndValue.selector).should((item$) => {
-        const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
-        expect(currentLabel).to.eq(selectorAndValue.wantedLabel);
-      });
+      getIonRangeEndSlotElements(selectorAndValue.selector).contains(
+        selectorAndValue.wantedLabel
+      );
     });
   });
 });
 
-describe('moving it to values beyond their supported value does not hangs', () => {
+describe('using it to values beyond their supported max/min does not hangs', () => {
   const outOfRangeValues: Array<{
     selector: string;
     wantedValue: RangeValue;
@@ -138,36 +127,69 @@ describe('moving it to values beyond their supported value does not hangs', () =
       cy.visit('./');
     });
 
-    it(`${selectorAndValue.selector}, target: ${stringify(
+    describe(`${selectorAndValue.selector}, target: ${stringify(
       selectorAndValue.outOfRangeValue
     )}`, () => {
-      ionRangeCypress.setValue(
-        selectorAndValue.selector,
-        selectorAndValue.initialValue
-      );
-      cy.get(selectorAndValue.selector).should((item$) => {
-        expect(stringify((<IonRange>item$[0]).value)).not.to.eq(
-          stringify(selectorAndValue.wantedValue)
+      it(`move`, () => {
+        ionRangeCypress.setValue(
+          selectorAndValue.selector,
+          selectorAndValue.initialValue
         );
-      }); // Correct Initial State,
+        cy.get(selectorAndValue.selector)
+          .then(($item) => {
+            return cy.wrap(stringify((<IonRange>$item[0]).value));
+          })
+          .should(
+            'not.eq', // Correct Initial State,
+            stringify(selectorAndValue.wantedValue)
+          );
 
-      ionRangeCypress.moveToValue(selectorAndValue.selector, {
-        targetValue: selectorAndValue.outOfRangeValue,
-      }); // Move to wrong target
+        ionRangeCypress.moveToValue(selectorAndValue.selector, {
+          targetValue: selectorAndValue.outOfRangeValue,
+        }); // Move to wrong target
 
-      // Should set correct value
-      cy.get(selectorAndValue.selector)
-        .then((item$) => {
-          return stringify((<IonRange>item$[0]).value);
-        })
-        .should('eq', stringify(selectorAndValue.wantedValue));
+        // Should set correct value
+        cy.get(selectorAndValue.selector)
+          .then((item$) => {
+            return cy.wrap(stringify((<IonRange>item$[0]).value));
+          })
+          .should('eq', stringify(selectorAndValue.wantedValue));
 
-      cy.get<IonRange>(selectorAndValue.selector)
-        .then((item$) => {
-          const currentLabel = getEndSlotInnerTextOfIonRange(item$[0]);
-          return currentLabel;
-        })
-        .should('eq', selectorAndValue.wantedLabel);
+        getIonRangeEndSlotElements(selectorAndValue.selector).contains(
+          selectorAndValue.wantedLabel
+        );
+      });
+
+      it(`setValue`, () => {
+        ionRangeCypress.setValue(
+          selectorAndValue.selector,
+          selectorAndValue.initialValue
+        );
+        cy.get(selectorAndValue.selector)
+          .then(($item) => {
+            return cy.wrap(stringify((<IonRange>$item[0]).value));
+          })
+          .should(
+            'not.eq', // Correct Initial State,
+            stringify(selectorAndValue.wantedValue)
+          );
+
+        ionRangeCypress.setValue(
+          selectorAndValue.selector,
+          selectorAndValue.outOfRangeValue
+        ); // set wrong target
+
+        // Should set correct value
+        cy.get(selectorAndValue.selector)
+          .then((item$) => {
+            return cy.wrap(stringify((<IonRange>item$[0]).value));
+          })
+          .should('eq', stringify(selectorAndValue.wantedValue));
+
+        getIonRangeEndSlotElements(selectorAndValue.selector).contains(
+          selectorAndValue.wantedLabel
+        );
+      });
     });
   });
 });
