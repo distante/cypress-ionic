@@ -74,6 +74,7 @@ class IonRangeCypress
     return getFromSupportedSelector(ionCssSelector).then(($ionRange) => {
       const ionRange = $ionRange[0] as IonRange;
 
+      options.targetValue = this.normalizeValue(options.targetValue, ionRange);
       if (this.isOptionNumber(options)) {
         return this.moveToNumberValue({
           ionRange,
@@ -219,11 +220,6 @@ class IonRangeCypress
         return null;
       }
 
-      if (this.outOfRange(targetValue, ionRange)) {
-        cy.log(`targetValue "${targetValue} is out of range`);
-        return null;
-      }
-
       return {
         targetValue,
         currentValue,
@@ -233,21 +229,15 @@ class IonRangeCypress
     return this.fixTargetValueForObjectValue(
       currentValue,
       knobSelector,
-      targetValue,
-      ionRange
+      targetValue
     );
   }
 
   private fixTargetValueForObjectValue(
     currentValue: IonRangeObjectValue,
     knobSelector: RangeKnobSelector,
-    targetValue: number,
-    ionRange: IonRange
+    targetValue: number
   ): { targetValue: number; currentValue: number } | null {
-    if (this.outOfRange(targetValue, ionRange)) {
-      return null;
-    }
-
     if (knobSelector === RangeKnobSelector.Lower) {
       if (currentValue.lower === targetValue) {
         return null;
@@ -275,8 +265,32 @@ class IonRangeCypress
     return typeof options.targetValue === 'number';
   }
 
-  private outOfRange(value: number, ionRange: IonRange): boolean {
-    return value < ionRange.min || value > ionRange.max;
+  /** If the wanted value is big, just set it to the max allowed */
+  private normalizeValue(value: RangeValue, ionRange: IonRange): RangeValue {
+    if (typeof value === 'number') {
+      return this.normalizeNumberValue(value, ionRange);
+    }
+
+    value.upper = this.normalizeNumberValue(value.upper, ionRange);
+    value.lower = this.normalizeNumberValue(value.lower, ionRange);
+
+    return value;
+  }
+
+  private normalizeNumberValue(value: number, ionRange: IonRange): number {
+    if (value < ionRange.min) {
+      cy.log(
+        `${value} is below the accepted min, setting it to ${ionRange.min}`
+      );
+      value = ionRange.min;
+    } else if (value > ionRange.max) {
+      cy.log(
+        `${value} is above the accepted max, setting it to ${ionRange.max}`
+      );
+      value = ionRange.max;
+    }
+
+    return value;
   }
 }
 
