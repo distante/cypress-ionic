@@ -59,19 +59,26 @@ class Select implements IIonSelectFunctions {
   }
 
   findIonSelectByLabelText(text: string): CypressIonicReturn<IonSelect> {
-    return cy.get('ion-select').then(($ionSelects) => {
-      const ionSelectElements = $ionSelects.filter(function () {
-        return !!this.getAttribute('aria-label')?.includes(text);
+    const wantedWords = text.split(' ');
+    const wantedSelectors = wantedWords.map(
+      (word) => `[aria-label~="${word}"]`
+    );
+    return cy
+      .get<IonSelect>(`ion-select${wantedSelectors.join('')}`)
+      .then(($item) => {
+        const ariaLabelIncludesText = $item[0]
+          .getAttribute('aria-label')
+          ?.includes(text);
+        if (!ariaLabelIncludesText) {
+          cy.log(
+            'IonSelectCypress could not find the wanted label, it just found',
+            $item[0]
+          );
+          throw new Error('IonSelectCypress could not find the wanted label.');
+        }
+
+        return $item;
       });
-
-      if (ionSelectElements.length > 1) {
-        cy.log(
-          `More than one IonSelect element was found with the text "${text}", using the first one`
-        );
-      }
-
-      return ionSelectElements[0];
-    });
   }
 }
 
