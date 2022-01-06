@@ -1,6 +1,6 @@
 {
   "name": "@saninn/cypress-ionic",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A set of functions to help you interact with Ionic Framework elements in your Cypress tests",
   "main": "dist/index.js",
   "module": "dist/index.js",
