@@ -1,25 +1,19 @@
+import { CypressIonicReturn } from '@interfaces';
 import { IonSelect } from '@ionic/core/components/ion-select';
-import {
-  CypressIonicComponentClass,
-  CypressIonicReturn,
-  SupportedSelectors,
-} from '@interfaces';
 
-export abstract class IonSelectFunctions
-  implements CypressIonicComponentClass<IonSelectFunctions, IonSelect>
-{
+export abstract class IonSelectFunctions {
   constructor(
     private readonly optionsContainerCSSSelector: string,
     private readonly optionItemCSSSelector: string
   ) {}
 
   abstract selectByOptionIndex(
-    selector: SupportedSelectors,
+    $ionSelect: JQuery<IonSelect>,
     optionIndex: number
   ): CypressIonicReturn<IonSelect>;
 
   abstract selectByOptionText(
-    selector: SupportedSelectors,
+    $ionSelect: JQuery<IonSelect>,
     optionText: string
   ): CypressIonicReturn<IonSelect>;
 
@@ -45,6 +39,7 @@ export abstract class IonSelectFunctions
 
         if (!wantedOption) {
           const msg = `There was no option with index ${optionIndex} on the give ionSelect. Total options: ${optionButtons.length}`;
+          // eslint-disable-next-line no-console
           console.warn(msg, optionButtons);
           throw new Error(msg);
         }

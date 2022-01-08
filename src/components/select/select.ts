@@ -1,7 +1,7 @@
 import { IonSelect } from '@ionic/core/components/ion-select';
+
 import { getFromSupportedSelector } from '../../helpers';
 import { CypressIonicReturn, SupportedSelectors } from '../../interfaces';
-
 import { ActionSheetSelect } from './action-sheet-select';
 import { AlertSelect } from './alert-select';
 import { IonSelectFunctions } from './ion-select-functions.abstract';
@@ -13,8 +13,8 @@ const actionSheetSelect = new ActionSheetSelect();
 const popoverSelect = new PopoverSelect();
 
 class Select implements IIonSelectFunctions {
-  #getSelectInterfaceImplementor(
-    selector: SupportedSelectors
+  private getSelectInterfaceImplementor(
+    selector: JQuery<IonSelect>
   ): Cypress.Chainable<IonSelectFunctions> {
     return getFromSupportedSelector<IonSelect>(selector).then(
       ($ionSelectElement) => {
@@ -34,28 +34,33 @@ class Select implements IIonSelectFunctions {
   }
 
   selectByOptionIndex(selector: SupportedSelectors, optionIndex: number) {
-    return this.#getSelectInterfaceImplementor(selector).then(
-      (ionsSelectFunctionImplementor) => {
-        return ionsSelectFunctionImplementor.selectByOptionIndex(
-          selector,
-          optionIndex
-        );
-      }
-    );
+    return getFromSupportedSelector<IonSelect>(selector).then(($ionSelect) => {
+      return this.getSelectInterfaceImplementor($ionSelect).then(
+        (ionsSelectFunctionImplementor) => {
+          return ionsSelectFunctionImplementor.selectByOptionIndex(
+            $ionSelect,
+            optionIndex
+          );
+        }
+      );
+    });
   }
 
   selectByOptionText(
     selector: SupportedSelectors,
     optionText: string
   ): CypressIonicReturn<IonSelect> {
-    return this.#getSelectInterfaceImplementor(selector).then(
-      (ionsSelectFunctionImplementor) => {
-        return ionsSelectFunctionImplementor.selectByOptionText(
-          selector,
-          optionText
-        );
-      }
-    );
+    return getFromSupportedSelector<IonSelect>(selector).then(($ionSelect) => {
+      return this.getSelectInterfaceImplementor($ionSelect).then(
+        (ionsSelectFunctionImplementor) => {
+          return ionsSelectFunctionImplementor
+            .selectByOptionText($ionSelect, optionText)
+            .then((v) => {
+              return cy.wrap(v);
+            });
+        }
+      );
+    });
   }
 
   findIonSelectByLabelText(text: string): CypressIonicReturn<IonSelect> {
@@ -63,22 +68,22 @@ class Select implements IIonSelectFunctions {
     const wantedSelectors = wantedWords.map(
       (word) => `[aria-label~="${word}"]`
     );
-    return cy
-      .get<IonSelect>(`ion-select${wantedSelectors.join('')}`)
-      .then(($item) => {
-        const ariaLabelIncludesText = $item[0]
-          .getAttribute('aria-label')
-          ?.includes(text);
-        if (!ariaLabelIncludesText) {
-          cy.log(
-            'IonSelectCypress could not find the wanted label, it just found',
-            $item[0]
-          );
-          throw new Error('IonSelectCypress could not find the wanted label.');
-        }
+    const finalSelector = `ion-select${wantedSelectors.join('')}`;
 
-        return $item;
-      });
+    return cy.get<IonSelect>(finalSelector).then(($item) => {
+      const ariaLabelIncludesText = $item[0]
+        .getAttribute('aria-label')
+        ?.includes(text);
+      if (!ariaLabelIncludesText) {
+        cy.log(
+          'IonSelectCypress could not find the wanted label, it just found',
+          $item[0]
+        );
+        throw new Error('IonSelectCypress could not find the wanted label.');
+      }
+
+      return $item;
+    });
   }
 }
 

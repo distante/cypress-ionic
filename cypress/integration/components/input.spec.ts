@@ -15,7 +15,6 @@ describe('Ion Input', () => {
         const wantedText = testHelpers.convertToTestString(element.innerText);
 
         ionInputCypress.write(selector, wantedText).then(() => {
-          console.log('element', element);
           const inputElement = element.querySelector('input')?.value;
 
           expect(inputElement).to.eq(wantedText);

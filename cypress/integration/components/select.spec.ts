@@ -72,6 +72,32 @@ describe('IonSelect', () => {
               });
           });
       });
+
+      it('can be used to select option by number', () => {
+        ionSelectCypress
+          .selectByOptionIndex(
+            ionSelectCypress.findIonSelectByLabelText(textAndSelector.text),
+            2
+          )
+          .then(() => {
+            cy.get(textAndSelector.elementSelector).should('have.value', '2');
+          });
+      });
+
+      it('can be used to select option by text', () => {
+        const wantedOptionText = '3';
+        return ionSelectCypress
+          .selectByOptionText(
+            ionSelectCypress.findIonSelectByLabelText(textAndSelector.text),
+            wantedOptionText
+          )
+          .then(() => {
+            cy.get(textAndSelector.elementSelector).should(
+              'have.value',
+              wantedOptionText
+            );
+          });
+      });
     });
   });
 });

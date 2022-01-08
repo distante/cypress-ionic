@@ -22,7 +22,7 @@ export class PopoverSelect extends IonSelectFunctions {
   }
 
   selectByOptionIndex(
-    selector: string,
+    selector: SupportedSelectors,
     optionIndex: number
   ): CypressIonicReturn<IonSelect> {
     return getFromSupportedSelector<IonSelect>(selector).then(($ionSelect) => {

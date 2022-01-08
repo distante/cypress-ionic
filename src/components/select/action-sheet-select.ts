@@ -1,7 +1,7 @@
+import { CypressIonicReturn } from '@interfaces';
 import { IonSelect } from '@ionic/core/components/ion-select';
-import { CypressIonicReturn, SupportedSelectors } from '@interfaces';
+
 import { IonSelectFunctions } from './ion-select-functions.abstract';
-import { getFromSupportedSelector } from '@helpers';
 
 export class ActionSheetSelect extends IonSelectFunctions {
   constructor() {
@@ -9,24 +9,20 @@ export class ActionSheetSelect extends IonSelectFunctions {
   }
 
   selectByOptionText(
-    selector: SupportedSelectors,
+    $ionSelect: JQuery<IonSelect>,
     optionText: string
   ): CypressIonicReturn<IonSelect> {
-    return getFromSupportedSelector<IonSelect>(selector).then(($ionSelect) => {
-      return this.getOptionButtonsContainer($ionSelect)
-        .findByText(optionText)
-        .parent()
-        .click()
-        .then(() => $ionSelect);
-    });
+    return this.getOptionButtonsContainer($ionSelect)
+      .findByText(optionText)
+      .parent()
+      .click()
+      .then(() => $ionSelect);
   }
 
   selectByOptionIndex(
-    selector: string,
+    $ionSelect: JQuery<IonSelect>,
     optionIndex: number
   ): CypressIonicReturn<IonSelect> {
-    return getFromSupportedSelector<IonSelect>(selector).then(($ionSelect) => {
-      return this.clickOnWantedOption($ionSelect, optionIndex);
-    });
+    return this.clickOnWantedOption($ionSelect, optionIndex);
   }
 }

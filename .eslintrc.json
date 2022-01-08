@@ -8,12 +8,14 @@
   ],
   "overrides": [
     {
-      "files": "*.ts",
+      "files": "**/*.ts",
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": ["tsconfig.json"]
       },
       "rules": {
+        "no-console": "error",
+        "no-debugger": "error",
         "@typescript-eslint/no-unused-vars": [
           "error",
           { "argsIgnorePattern": "^_" }
