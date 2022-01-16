@@ -1,5 +1,6 @@
 dist/
 html
 scripts/
+docs/
 **/.eslintrc.js
 commitlint.config.js
