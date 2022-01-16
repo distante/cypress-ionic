@@ -52,8 +52,7 @@ it('can be changed by set value', () => {
 
 ## API and Documentation
 
-- [See the generated documentation here](https://cypress-ionic.saninnsalas.com/interfaces/_models_logger_config_interface_.iloggerconfig.html)
-- [API](https://logger.saninnsalas.com/classes/__saninn__logger_.saninnlogger.html)
+[See the generated documentation here](https://cypress-ionic.saninnsalas.com)
 
 ## License
 

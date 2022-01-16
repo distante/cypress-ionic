@@ -28,5 +28,5 @@
     ]
   },
   "exclude": ["**/.eslint.js"],
-  "include": ["./src"]
+  "include": ["./src/index.ts"]
 }

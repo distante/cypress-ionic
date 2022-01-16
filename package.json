@@ -20,6 +20,7 @@
     "full-test": "start-server-and-test serve http://localhost:3999 test",
     "ci": "node --experimental-json-modules ./scripts/test.mjs",
     "build": "tsc --project tsconfig.json",
+    "make-docs": "typedoc",
     "tsc:check": "tsc --noEmit",
     "prettier:check": "prettier --config ./.prettierrc ./src --check",
     "release": "release-it --verbose --ci",
@@ -68,6 +69,8 @@
     "start-server-and-test": "^1.14.0",
     "ts-patch": "^2.0.1",
     "tslib": "^2.3.1",
+    "typedoc": "^0.22.10",
+    "typedoc-plugin-missing-exports": "^0.22.6",
     "typescript": "^4.5.2",
     "typescript-transform-paths": "^3.3.1"
   },

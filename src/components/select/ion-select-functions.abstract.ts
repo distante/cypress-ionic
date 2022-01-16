@@ -1,6 +1,7 @@
 import { CypressIonicReturn } from '@interfaces';
 import { IonSelect } from '@ionic/core/components/ion-select';
 
+/** @internal */
 export abstract class IonSelectFunctions {
   constructor(
     private readonly optionsContainerCSSSelector: string,

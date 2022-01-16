@@ -20,6 +20,7 @@ interface IonRangeObjectValue {
   lower: number;
 }
 
+/** @internal */
 enum RangeKnobSelector {
   Single = '.range-knob-handle.range-knob-a',
   Lower = '.range-knob-handle.range-knob-a',

@@ -1,5 +1,7 @@
 import { CypressIonicReturn, SupportedSelectors } from '../interfaces';
-
+/**
+ * @internal
+ */
 export function getFromSupportedSelector<T extends HTMLElement>(
   selector: SupportedSelectors
 ): CypressIonicReturn<T> {

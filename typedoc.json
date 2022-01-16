@@ -1,0 +1,15 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["./src/index.ts"],
+  "out": "./docs",
+  "hideGenerator": true,
+  "internalNamespace": "Details",
+  "excludeExternals": true,
+  "intentionallyNotExported": [],
+  "entryPointStrategy": "Resolve",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "includeVersion": true,
+  "sort": ["source-order"]
+}
