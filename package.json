@@ -85,7 +85,7 @@
   "release-it": {
     "hooks": {
       "before:init": "npm run build && npm run ci",
-      "after:bump": "",
+      "after:bump": "npx typedoc && git add ./docs && git commit -m 'docs: pre-release docs'",
       "after:release": "echo Successfully released ${name} v${version} to https://${repo.host}/${repo.repository}/releases/tag/v${version}"
     },
     "git": {
