@@ -116,51 +116,24 @@ class IonRangeCypress
     const handle = ionRange.shadowRoot?.querySelector(knobSelector);
 
     if (!handle) {
-      return cy.wait(100).then(() =>
-        this.moveToNumberValue({
-          ionRange,
-          currentValue,
-          knobSelector,
-          options,
-        })
-      );
+      throw new Error('No handle was found, is the component hydrated?!');
     }
 
     const stepAttribute = ionRange.getAttribute('step');
     const step = stepAttribute ? parseInt(stepAttribute, 10) : 1;
 
-    const move =
-      currentValue > options.targetValue ? '{leftarrow}' : '{rightarrow}';
+    const shouldMoveLeft = currentValue > options.targetValue;
+    const move = shouldMoveLeft ? '{leftarrow}' : '{rightarrow}';
     const totalMoves = Math.abs(currentValue - options.targetValue) / step;
-    const finalMovesString = move.repeat(totalMoves);
+    const finalTypeCommand = move.repeat(totalMoves);
 
     return cy
       .wrap(handle)
       .log(
         `setting ionRange (knob: ${knobSelector}) from ${currentValue} to ${options.targetValue} (total moves : ${totalMoves})`
       )
-      .type(finalMovesString, { force: true, delay: 100 })
+      .type(finalTypeCommand, { force: true, delay: 100 })
       .then(() => {
-        /**
-         * There is a problem where for dual knobs the first "rightarrow" move
-         * does not work. So for now I will do a double check...
-         */
-        const neededObject = this.getFixTargetValue(
-          ionRange,
-          knobSelector,
-          options.targetValue
-        );
-        if (neededObject) {
-          return cy.log('target value not arrived, fixing it').then(() =>
-            this.moveToNumberValue({
-              ionRange,
-              currentValue: neededObject.currentValue,
-              knobSelector,
-              options,
-            })
-          );
-        }
-
         return cy.wrap(ionRange);
       });
   }
@@ -214,56 +187,6 @@ class IonRangeCypress
         ionRange
       );
     });
-  }
-
-  private getFixTargetValue(
-    ionRange: IonRange,
-    knobSelector: RangeKnobSelector,
-    targetValue: number
-  ): { targetValue: number; currentValue: number } | null {
-    const currentValue = ionRange.value;
-    if (typeof currentValue === 'number') {
-      if (targetValue === currentValue) {
-        return null;
-      }
-
-      return {
-        targetValue,
-        currentValue,
-      };
-    }
-
-    return this.fixTargetValueForObjectValue(
-      currentValue,
-      knobSelector,
-      targetValue
-    );
-  }
-
-  private fixTargetValueForObjectValue(
-    currentValue: IonRangeObjectValue,
-    knobSelector: RangeKnobSelector,
-    targetValue: number
-  ): { targetValue: number; currentValue: number } | null {
-    if (knobSelector === RangeKnobSelector.Lower) {
-      if (currentValue.lower === targetValue) {
-        return null;
-      }
-
-      return {
-        targetValue,
-        currentValue: currentValue.lower,
-      };
-    }
-
-    if (currentValue.upper === targetValue) {
-      return null;
-    }
-
-    return {
-      targetValue,
-      currentValue: currentValue.upper,
-    };
   }
 
   private isOptionNumber(
