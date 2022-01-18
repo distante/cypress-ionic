@@ -6,14 +6,15 @@ export function getFromSupportedSelector<T extends HTMLElement>(
   selector: SupportedSelectors
 ): CypressIonicReturn<T> {
   if (typeof selector === 'string') {
-    return cy.get<T>(selector);
+    return cy.get<T>(`${selector}.hydrated`);
   }
 
   if (isJQuery<T>(selector)) {
-    return cy.wrap(selector);
+    // selector.attr('cypress-ionic-test-id', )
+    return cy.wrap(selector).should('have.class', 'hydrated');
   }
 
-  return selector as CypressIonicReturn<T>;
+  return (selector as CypressIonicReturn<T>).should('have.class', 'hydrated');
 }
 
 function isJQuery<T extends HTMLElement>(
