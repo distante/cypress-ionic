@@ -46,6 +46,7 @@ console.log(greenBoldColor('\nRUNNING TESTS ON ALL SUPPORTED IONIC VERSIONS'));
     execSync(`npm i ${ionicInstallString} --no-save`, {
       stdio: 'inherit',
     });
+
     execSync('npm run full-test', { stdio: 'inherit' });
   } catch (error) {
     restoreIonicVersionIfNeeded();
