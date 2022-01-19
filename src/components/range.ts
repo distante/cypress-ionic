@@ -116,13 +116,8 @@ class IonRangeCypress
     const handle = ionRange.shadowRoot?.querySelector(knobSelector);
 
     if (!handle) {
-      return cy.wait(100).then(() =>
-        this.moveToNumberValue({
-          ionRange,
-          currentValue,
-          knobSelector,
-          options,
-        })
+      throw new Error(
+        'No Handle was found in th shadow root. Is the element hydrated?'
       );
     }
 
@@ -169,26 +164,19 @@ class IonRangeCypress
     ionRange: GenericIonRange<IonRangeObjectValue>,
     options: IonRangeCypressMoveToValueOptions<IonRangeObjectValue>
   ): Cypress.Chainable<JQuery<IonRange>> {
-    const cypressFunctions: Array<() => Cypress.Chainable<JQuery<IonRange>>> =
-      [];
-
-    if (ionRange.value.upper !== options.targetValue.upper) {
-      cypressFunctions.push(() =>
-        this.moveToNumberValue({
-          ionRange,
-          currentValue: ionRange.value.upper as number,
-          knobSelector: RangeKnobSelector.Upper,
-          options: {
-            ...options,
-            targetValue: options.targetValue.upper,
-          },
-        })
-      );
-    }
-
-    if (ionRange.value.lower !== options.targetValue.lower) {
-      cypressFunctions.push(() =>
-        this.moveToNumberValue({
+    // Move upper
+    return this.moveToNumberValue({
+      ionRange,
+      currentValue: ionRange.value.upper as number,
+      knobSelector: RangeKnobSelector.Upper,
+      options: {
+        ...options,
+        targetValue: options.targetValue.upper,
+      },
+    })
+      .then(() => {
+        // Move lower
+        return this.moveToNumberValue({
           ionRange,
           currentValue: ionRange.value.lower,
           knobSelector: RangeKnobSelector.Lower,
@@ -196,24 +184,13 @@ class IonRangeCypress
             ...options,
             targetValue: options.targetValue.lower,
           },
-        })
-      );
-    }
-
-    if (!cypressFunctions.length) {
-      return cy.wrap(ionRange);
-    }
-
-    const cypressCall: () => Cypress.Chainable<JQuery<IonRange>> =
-      cypressFunctions.reduce((prev, curr) => {
-        return () => prev().then(() => curr());
+        });
+      })
+      .then(() => {
+        cy.log(`ion range new value: ${JSON.stringify(ionRange.value)}`).wrap(
+          ionRange
+        );
       });
-
-    return cypressCall().then(() => {
-      cy.log(`ion range new value: ${JSON.stringify(ionRange.value)}`).wrap(
-        ionRange
-      );
-    });
   }
 
   private getFixTargetValue(
