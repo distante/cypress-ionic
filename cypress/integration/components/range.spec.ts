@@ -24,55 +24,57 @@ const selectorAndValues: Array<{
   },
 ];
 
-selectorAndValues.forEach((selectorAndValue) => {
-  describe(selectorAndValue.selector, () => {
-    beforeEach(() => {
-      cy.visit('./');
-    });
+describe('using valid valid ranges', () => {
+  beforeEach(() => {
+    cy.visit('./');
+  });
 
-    it('can be changed by set value', () => {
-      cy.get(selectorAndValue.selector).should((item$) => {
-        expect(stringify((<IonRange>item$[0]).value)).not.to.eq(
-          stringify(selectorAndValue.wantedValue)
+  selectorAndValues.forEach((selectorAndValue) => {
+    describe(selectorAndValue.selector, () => {
+      it('can be changed by set value', () => {
+        cy.get(selectorAndValue.selector).should((item$) => {
+          expect(stringify((<IonRange>item$[0]).value)).not.to.eq(
+            stringify(selectorAndValue.wantedValue)
+          );
+        });
+
+        ionRangeCypress.setValue(
+          selectorAndValue.selector,
+          selectorAndValue.wantedValue
+        );
+
+        cy.get(selectorAndValue.selector).should((item$) => {
+          expect(stringify((<IonRange>item$[0]).value)).to.eq(
+            stringify(selectorAndValue.wantedValue)
+          );
+        });
+
+        getIonRangeEndSlotElements(selectorAndValue.selector).contains(
+          selectorAndValue.wantedLabel
         );
       });
 
-      ionRangeCypress.setValue(
-        selectorAndValue.selector,
-        selectorAndValue.wantedValue
-      );
+      it('can be changed by move value', () => {
+        cy.get(selectorAndValue.selector).should((item$) => {
+          expect(stringify((<IonRange>item$[0]).value)).not.to.eq(
+            stringify(selectorAndValue.wantedValue)
+          );
+        });
 
-      cy.get(selectorAndValue.selector).should((item$) => {
-        expect(stringify((<IonRange>item$[0]).value)).to.eq(
-          stringify(selectorAndValue.wantedValue)
+        ionRangeCypress.moveToValue(selectorAndValue.selector, {
+          targetValue: selectorAndValue.wantedValue,
+        });
+
+        cy.get(selectorAndValue.selector).should((item$) => {
+          expect(stringify((<IonRange>item$[0]).value)).to.eq(
+            stringify(selectorAndValue.wantedValue)
+          );
+        });
+
+        getIonRangeEndSlotElements(selectorAndValue.selector).contains(
+          selectorAndValue.wantedLabel
         );
       });
-
-      getIonRangeEndSlotElements(selectorAndValue.selector).contains(
-        selectorAndValue.wantedLabel
-      );
-    });
-
-    it('can be changed by move value', () => {
-      cy.get(selectorAndValue.selector).should((item$) => {
-        expect(stringify((<IonRange>item$[0]).value)).not.to.eq(
-          stringify(selectorAndValue.wantedValue)
-        );
-      });
-
-      ionRangeCypress.moveToValue(selectorAndValue.selector, {
-        targetValue: selectorAndValue.wantedValue,
-      });
-
-      cy.get(selectorAndValue.selector).should((item$) => {
-        expect(stringify((<IonRange>item$[0]).value)).to.eq(
-          stringify(selectorAndValue.wantedValue)
-        );
-      });
-
-      getIonRangeEndSlotElements(selectorAndValue.selector).contains(
-        selectorAndValue.wantedLabel
-      );
     });
   });
 });
@@ -122,11 +124,11 @@ describe('using it to values beyond their supported max/min does not hangs', () 
     },
   ];
 
-  outOfRangeValues.forEach((selectorAndValue) => {
-    beforeEach(() => {
-      cy.visit('./');
-    });
+  beforeEach(() => {
+    cy.visit('./');
+  });
 
+  outOfRangeValues.forEach((selectorAndValue) => {
     describe(`${selectorAndValue.selector}, target: ${stringify(
       selectorAndValue.outOfRangeValue
     )}`, () => {
