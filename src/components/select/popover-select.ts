@@ -5,7 +5,10 @@ import { IonSelectFunctions } from './ion-select-functions.abstract';
 
 export class PopoverSelect extends IonSelectFunctions {
   constructor() {
-    super('ion-popover ion-select-popover ion-radio-group', 'ion-item');
+    super(
+      'ion-popover.hydrated ion-select-popover.hydrated ion-radio-group.hydrated',
+      'ion-item'
+    );
   }
 
   public selectByOptionText(

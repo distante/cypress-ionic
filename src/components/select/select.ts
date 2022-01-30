@@ -51,15 +51,19 @@ class Select implements IIonSelectFunctions {
     optionText: string
   ): CypressIonicReturn<IonSelect> {
     return getFromSupportedSelector<IonSelect>(selector).then(($ionSelect) => {
-      return this.getSelectInterfaceImplementor($ionSelect).then(
-        (ionsSelectFunctionImplementor) => {
-          return ionsSelectFunctionImplementor
-            .selectByOptionText($ionSelect, optionText)
-            .then((v) => {
-              return cy.wrap(v);
-            });
-        }
-      );
+      return cy
+        .log(`Finding ion-select option with text "${optionText}"`)
+        .then(() => {
+          return this.getSelectInterfaceImplementor($ionSelect).then(
+            (ionsSelectFunctionImplementor) => {
+              return ionsSelectFunctionImplementor
+                .selectByOptionText($ionSelect, optionText)
+                .then((v) => {
+                  return cy.wrap(v);
+                });
+            }
+          );
+        });
     });
   }
 
@@ -68,22 +72,25 @@ class Select implements IIonSelectFunctions {
     const wantedSelectors = wantedWords.map(
       (word) => `[aria-label~="${word}"]`
     );
-    const finalSelector = `ion-select${wantedSelectors.join('')}`;
+    const finalSelector = `ion-select.hydrated${wantedSelectors.join('')}`;
 
-    return cy.get<IonSelect>(finalSelector).then(($item) => {
-      const ariaLabelIncludesText = $item[0]
-        .getAttribute('aria-label')
-        ?.includes(text);
-      if (!ariaLabelIncludesText) {
-        cy.log(
-          'IonSelectCypress could not find the wanted label, it just found',
-          $item[0]
-        );
-        throw new Error('IonSelectCypress could not find the wanted label.');
-      }
+    return cy
+      .log(`finding ion select option with text "${text}"`)
+      .get<IonSelect>(finalSelector)
+      .then(($item) => {
+        const ariaLabelIncludesText = $item[0]
+          .getAttribute('aria-label')
+          ?.includes(text);
+        if (!ariaLabelIncludesText) {
+          cy.log(
+            'IonSelectCypress could not find the wanted label, it just found',
+            $item[0]
+          );
+          throw new Error('IonSelectCypress could not find the wanted label.');
+        }
 
-      return $item;
-    });
+        return $item;
+      });
   }
 }
 

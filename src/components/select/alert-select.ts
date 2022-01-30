@@ -4,7 +4,7 @@ import { IonSelectFunctions } from './ion-select-functions.abstract';
 
 export class AlertSelect extends IonSelectFunctions {
   constructor() {
-    super('ion-alert [role="radiogroup"]', 'button');
+    super('ion-alert.hydrated [role="radiogroup"]', 'button');
   }
 
   selectByOptionIndex($ionSelect: JQuery<IonSelect>, optionIndex: number) {
@@ -26,7 +26,7 @@ export class AlertSelect extends IonSelectFunctions {
 
   private clickOkOnAlert(): Cypress.Chainable<void> {
     return cy
-      .get('ion-alert .alert-button-group button')
+      .get('ion-alert.hydrated .alert-button-group button')
       .then((actionButtons) => {
         const okayButton = actionButtons[actionButtons.length - 1];
         return cy.wrap(okayButton).click();

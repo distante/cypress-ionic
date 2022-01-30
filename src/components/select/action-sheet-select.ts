@@ -5,7 +5,7 @@ import { IonSelectFunctions } from './ion-select-functions.abstract';
 
 export class ActionSheetSelect extends IonSelectFunctions {
   constructor() {
-    super('ion-action-sheet .action-sheet-group', 'button');
+    super('ion-action-sheet.hydrated .action-sheet-group', 'button');
   }
 
   selectByOptionText(
