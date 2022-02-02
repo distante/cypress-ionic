@@ -75,7 +75,7 @@ class Select implements IIonSelectFunctions {
     const finalSelector = `ion-select.hydrated${wantedSelectors.join('')}`;
 
     return cy
-      .log(`finding ion select option with text "${text}"`)
+      .log(`finding ion select with label "${text}"`)
       .get<IonSelect>(finalSelector)
       .then(($item) => {
         const ariaLabelIncludesText = $item[0]
