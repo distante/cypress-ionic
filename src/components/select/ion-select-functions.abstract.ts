@@ -1,5 +1,4 @@
 import { CypressIonicReturn } from '@interfaces';
-import { IonSelect } from '@ionic/core/components/ion-select';
 
 /** @internal */
 export abstract class IonSelectFunctions {
@@ -9,17 +8,17 @@ export abstract class IonSelectFunctions {
   ) {}
 
   abstract selectByOptionIndex(
-    $ionSelect: JQuery<IonSelect>,
+    $ionSelect: JQuery<HTMLIonSelectElement>,
     optionIndex: number
-  ): CypressIonicReturn<IonSelect>;
+  ): CypressIonicReturn<HTMLIonSelectElement>;
 
   abstract selectByOptionText(
-    $ionSelect: JQuery<IonSelect>,
+    $ionSelect: JQuery<HTMLIonSelectElement>,
     optionText: string
-  ): CypressIonicReturn<IonSelect>;
+  ): CypressIonicReturn<HTMLIonSelectElement>;
 
   protected getOptionButtonsContainer(
-    $ionSelect: JQuery<IonSelect>
+    $ionSelect: JQuery<HTMLIonSelectElement>
   ): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy
       .wrap($ionSelect[0])
@@ -30,9 +29,9 @@ export abstract class IonSelectFunctions {
   }
 
   protected clickOnWantedOption(
-    $ionSelect: JQuery<IonSelect>,
+    $ionSelect: JQuery<HTMLIonSelectElement>,
     optionIndex: number
-  ): Cypress.Chainable<JQuery<IonSelect>> {
+  ): Cypress.Chainable<JQuery<HTMLIonSelectElement>> {
     return this.getOptionButtonsContainer($ionSelect)
       .children(this.optionItemCSSSelector)
       .then((optionButtons) => {

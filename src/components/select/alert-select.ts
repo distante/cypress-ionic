@@ -1,5 +1,3 @@
-import { IonSelect } from '@ionic/core/components/ion-select';
-
 import { IonSelectFunctions } from './ion-select-functions.abstract';
 
 export class AlertSelect extends IonSelectFunctions {
@@ -7,16 +5,19 @@ export class AlertSelect extends IonSelectFunctions {
     super('ion-alert.hydrated [role="radiogroup"]', 'button');
   }
 
-  selectByOptionIndex($ionSelect: JQuery<IonSelect>, optionIndex: number) {
+  selectByOptionIndex(
+    $ionSelect: JQuery<HTMLIonSelectElement>,
+    optionIndex: number
+  ) {
     return this.clickOnWantedOption($ionSelect, optionIndex)
       .then(() => this.clickOkOnAlert())
       .then(() => $ionSelect);
   }
 
   selectByOptionText(
-    $ionSelect: JQuery<IonSelect>,
+    $ionSelect: JQuery<HTMLIonSelectElement>,
     optionText: string
-  ): Cypress.Chainable<JQuery<IonSelect>> {
+  ): Cypress.Chainable<JQuery<HTMLIonSelectElement>> {
     return this.getOptionButtonsContainer($ionSelect)
       .findByText(optionText)
       .click()
@@ -24,7 +25,7 @@ export class AlertSelect extends IonSelectFunctions {
       .then(() => $ionSelect);
   }
 
-  private clickOkOnAlert(): Cypress.Chainable<void> {
+  private clickOkOnAlert(): Cypress.Chainable<undefined> {
     return cy
       .get('ion-alert.hydrated .alert-button-group button')
       .then((actionButtons) => {
@@ -32,7 +33,7 @@ export class AlertSelect extends IonSelectFunctions {
         return cy.wrap(okayButton).click();
       })
       .then(() => {
-        return cy.wrap(void 0);
+        return cy.wrap(undefined);
       });
   }
 }

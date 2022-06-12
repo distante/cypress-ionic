@@ -11,7 +11,7 @@ import {
 } from '@interfaces';
 import { getFromSupportedSelector } from '@helpers';
 
-type GenericIonRange<T> = IonRange & {
+type GenericIonRange<T> = HTMLIonRangeElement & {
   value: T;
 };
 
@@ -32,7 +32,7 @@ export interface IonRangeCypressMoveToValueOptions<T = RangeValue> {
 }
 
 class IonRangeCypress
-  implements CypressIonicComponentClass<IonRangeCypress, IonRange>
+  implements CypressIonicComponentClass<IonRangeCypress, HTMLIonRangeElement>
 {
   /**
    * Sets the value or the {@link IonRange} programmatically and triggers
@@ -42,8 +42,8 @@ class IonRangeCypress
   public setValue(
     ionCssSelector: SupportedSelectors,
     value: RangeValue
-  ): CypressIonicReturn<IonRange> {
-    return getFromSupportedSelector<IonRange>(ionCssSelector).then(
+  ): CypressIonicReturn<HTMLIonRangeElement> {
+    return getFromSupportedSelector<HTMLIonRangeElement>(ionCssSelector).then(
       ($ionRange) => {
         const ionRange = $ionRange[0];
 
@@ -74,9 +74,9 @@ class IonRangeCypress
   public moveToValue(
     ionCssSelector: SupportedSelectors,
     options: IonRangeCypressMoveToValueOptions
-  ): CypressIonicReturn<IonRange> {
+  ): CypressIonicReturn<HTMLIonRangeElement> {
     return getFromSupportedSelector(ionCssSelector).then(($ionRange) => {
-      const ionRange = $ionRange[0] as IonRange;
+      const ionRange = $ionRange[0] as HTMLIonRangeElement;
 
       options.targetValue = this.normalizeRangeValue(
         options.targetValue,
@@ -104,11 +104,11 @@ class IonRangeCypress
     knobSelector,
     options,
   }: {
-    ionRange: IonRange;
+    ionRange: HTMLIonRangeElement;
     currentValue: number;
     knobSelector: RangeKnobSelector;
     options: IonRangeCypressMoveToValueOptions<number>;
-  }): CypressIonicReturn<IonRange> {
+  }): CypressIonicReturn<HTMLIonRangeElement> {
     if (currentValue === options.targetValue) {
       return cy.wrap(ionRange);
     }
@@ -163,7 +163,7 @@ class IonRangeCypress
   private moveToObjectValue(
     ionRange: GenericIonRange<IonRangeObjectValue>,
     options: IonRangeCypressMoveToValueOptions<IonRangeObjectValue>
-  ): Cypress.Chainable<JQuery<IonRange>> {
+  ): Cypress.Chainable<JQuery<HTMLIonRangeElement>> {
     // Move upper
     return this.moveToNumberValue({
       ionRange,
@@ -252,7 +252,7 @@ class IonRangeCypress
   /** If the wanted value is big, just set it to the max allowed */
   private normalizeRangeValue(
     value: RangeValue,
-    ionRange: IonRange
+    ionRange: HTMLIonRangeElement
   ): RangeValue {
     if (typeof value === 'number') {
       return this.normalizeNumberValue(value, ionRange);
@@ -264,7 +264,10 @@ class IonRangeCypress
     return value;
   }
 
-  private normalizeNumberValue(value: number, ionRange: IonRange): number {
+  private normalizeNumberValue(
+    value: number,
+    ionRange: HTMLIonRangeElement
+  ): number {
     if (value < ionRange.min) {
       cy.log(
         `${value} is below the accepted min, setting it to ${ionRange.min}`

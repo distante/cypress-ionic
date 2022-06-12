@@ -3,17 +3,19 @@ import { CypressIonicComponentClass, SupportedSelectors } from '@interfaces';
 import { IonButton } from '@ionic/core/components/ion-button';
 
 class IonButtonCypress
-  implements CypressIonicComponentClass<IonButtonCypress, IonButton>
+  implements CypressIonicComponentClass<IonButtonCypress, HTMLIonButtonElement>
 {
   public click(selector: SupportedSelectors) {
-    return getFromSupportedSelector<IonButton>(selector).then(($ionButton) => {
-      return cy
-        .wrap($ionButton)
-        .shadow()
-        .find('button')
-        .click()
-        .then(() => $ionButton);
-    });
+    return getFromSupportedSelector<HTMLIonButtonElement>(selector).then(
+      ($ionButton) => {
+        return cy
+          .wrap($ionButton)
+          .shadow()
+          .find('button')
+          .click({ force: true })
+          .then(() => $ionButton);
+      }
+    );
   }
 
   // @ts-expect-error This is a special case
