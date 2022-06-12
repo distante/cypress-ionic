@@ -1,4 +1,4 @@
-import { HTMLStencilElement } from '@ionic/core';
+import type { HTMLStencilElement } from '@ionic/core';
 
 export type SupportedSelectors<T = HTMLStencilElement> =
   | string
