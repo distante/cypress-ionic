@@ -14,7 +14,10 @@ export function getFromSupportedSelector<T extends HTMLElement>(
     return cy.wrap(selector).should('have.class', 'hydrated');
   }
 
-  return (selector as CypressIonicReturn<T>).should('have.class', 'hydrated');
+  return (selector as unknown as CypressIonicReturn<T>).should(
+    'have.class',
+    'hydrated'
+  );
 }
 
 function isJQuery<T extends HTMLElement>(
