@@ -11,7 +11,7 @@ class IonButtonCypress
         .wrap($ionButton)
         .shadow()
         .find('button')
-        .click()
+        .click({ force: true })
         .then(() => $ionButton);
     });
   }
