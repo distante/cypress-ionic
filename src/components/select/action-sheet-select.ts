@@ -1,5 +1,4 @@
 import { CypressIonicReturn } from '@interfaces';
-import { IonSelect } from '@ionic/core/components/ion-select';
 
 import { IonSelectFunctions } from './ion-select-functions.abstract';
 
@@ -9,9 +8,9 @@ export class ActionSheetSelect extends IonSelectFunctions {
   }
 
   selectByOptionText(
-    $ionSelect: JQuery<IonSelect>,
+    $ionSelect: JQuery<HTMLIonSelectElement>,
     optionText: string
-  ): CypressIonicReturn<IonSelect> {
+  ): CypressIonicReturn<HTMLIonSelectElement> {
     return this.getOptionButtonsContainer($ionSelect)
       .findByText(optionText)
       .parent()
@@ -20,9 +19,9 @@ export class ActionSheetSelect extends IonSelectFunctions {
   }
 
   selectByOptionIndex(
-    $ionSelect: JQuery<IonSelect>,
+    $ionSelect: JQuery<HTMLIonSelectElement>,
     optionIndex: number
-  ): CypressIonicReturn<IonSelect> {
+  ): CypressIonicReturn<HTMLIonSelectElement> {
     return this.clickOnWantedOption($ionSelect, optionIndex);
   }
 }
