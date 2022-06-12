@@ -19,10 +19,12 @@ class IonButtonCypress
   }
 
   // @ts-expect-error This is a special case
-  public clickByText(text: string): Cypress.Chainable<JQuery<IonButton>> {
+  public clickByText(
+    text: string
+  ): Cypress.Chainable<JQuery<HTMLIonButtonElement>> {
     return cy
       .findByText(text)
-      .closest<IonButton>('ion-button')
+      .closest<HTMLIonButtonElement>('ion-button')
       .click({ force: true });
   }
 }
