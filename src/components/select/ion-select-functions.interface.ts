@@ -3,12 +3,12 @@ import { CypressIonicReturn, SupportedSelectors } from '@interfaces';
 /** @internal */
 export interface IIonSelectFunctions {
   selectByOptionIndex(
-    selector: SupportedSelectors,
+    selector: SupportedSelectors<HTMLIonSelectElement>,
     optionIndex: number
   ): CypressIonicReturn<HTMLIonSelectElement>;
 
   selectByOptionText(
-    selector: SupportedSelectors,
+    selector: SupportedSelectors<HTMLIonSelectElement>,
     optionText: string
   ): CypressIonicReturn<HTMLIonSelectElement>;
 }

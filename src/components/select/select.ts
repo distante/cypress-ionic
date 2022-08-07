@@ -31,7 +31,10 @@ class Select implements IIonSelectFunctions {
     );
   }
 
-  selectByOptionIndex(selector: SupportedSelectors, optionIndex: number) {
+  selectByOptionIndex(
+    selector: SupportedSelectors<HTMLIonSelectElement>,
+    optionIndex: number
+  ) {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(
       ($ionSelect) => {
         return this.getSelectInterfaceImplementor($ionSelect).then(
@@ -47,7 +50,7 @@ class Select implements IIonSelectFunctions {
   }
 
   selectByOptionText(
-    selector: SupportedSelectors,
+    selector: SupportedSelectors<HTMLIonSelectElement>,
     optionText: string
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(

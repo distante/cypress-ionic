@@ -11,7 +11,7 @@ export class PopoverSelect extends IonSelectFunctions {
   }
 
   public selectByOptionText(
-    selector: SupportedSelectors,
+    selector: SupportedSelectors<HTMLIonSelectElement>,
     optionText: string
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(
@@ -26,7 +26,7 @@ export class PopoverSelect extends IonSelectFunctions {
   }
 
   selectByOptionIndex(
-    selector: SupportedSelectors,
+    selector: SupportedSelectors<HTMLIonSelectElement>,
     optionIndex: number
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(

@@ -4,7 +4,7 @@ import { CypressIonicComponentClass, SupportedSelectors } from '@interfaces';
 class IonButtonCypress
   implements CypressIonicComponentClass<IonButtonCypress, HTMLIonButtonElement>
 {
-  public click(selector: SupportedSelectors) {
+  public click(selector: SupportedSelectors<HTMLIonButtonElement>) {
     return getFromSupportedSelector<HTMLIonButtonElement>(selector).then(
       ($ionButton) => {
         return cy

@@ -40,7 +40,7 @@ class IonRangeCypress
    * to your application.
    */
   public setValue(
-    ionCssSelector: SupportedSelectors,
+    ionCssSelector: SupportedSelectors<HTMLIonRangeElement>,
     value: RangeValue
   ): CypressIonicReturn<HTMLIonRangeElement> {
     return getFromSupportedSelector<HTMLIonRangeElement>(ionCssSelector).then(
@@ -72,7 +72,7 @@ class IonRangeCypress
    * is `150` will move the knob until `150`.
    */
   public moveToValue(
-    ionCssSelector: SupportedSelectors,
+    ionCssSelector: SupportedSelectors<HTMLIonRangeElement>,
     options: IonRangeCypressMoveToValueOptions
   ): CypressIonicReturn<HTMLIonRangeElement> {
     return getFromSupportedSelector(ionCssSelector).then(($ionRange) => {
