@@ -13,7 +13,7 @@ class IonInputCypress
         return cy
           .wrap($ionInput)
           .find('input')
-          .type(text)
+          .type(text,{force:true})
           .then(() => $ionInput);
       }
     );
