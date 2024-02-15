@@ -2,7 +2,7 @@ import { ionSelectCypress } from '@lib';
 
 describe('IonSelect', () => {
   beforeEach(() => {
-    cy.visit('./');
+    cy.visit('./ion-select.html');
   });
 
   const byInterfaceSelectors = [
@@ -44,21 +44,39 @@ describe('IonSelect', () => {
   const byTextWithSelectors: Array<{ elementSelector: string; text: string }> =
     [
       {
-        elementSelector: 'ion-select[interface=alert]',
-        text: 'ion-select ion-alert',
+        elementSelector:
+          'ion-select#ion-select-ion-alert-external-label[interface=alert]',
+        text: 'ion-select ion-alert external-label',
       },
       {
-        elementSelector: 'ion-select[interface=action-sheet]',
-        text: 'ion-select ion-action-sheet',
+        elementSelector:
+          'ion-select#ion-select-ion-action-sheet-external-label[interface=action-sheet]',
+        text: 'ion-select ion-action-sheet external-label',
       },
       {
-        elementSelector: 'ion-select[interface=popover]',
-        text: 'ion-select ion-popover',
+        elementSelector:
+          'ion-select#ion-select-ion-popover-external-label[interface=popover]',
+        text: 'ion-select ion-popover external-label',
+      },
+      {
+        elementSelector:
+          'ion-select#ion-select-ion-alert-internal-label[interface=alert]',
+        text: 'ion-select ion-alert internal-label',
+      },
+      {
+        elementSelector:
+          'ion-select#ion-select-ion-action-sheet-internal-label[interface=action-sheet]',
+        text: 'ion-select ion-action-sheet internal-label',
+      },
+      {
+        elementSelector:
+          'ion-select#ion-select-ion-popover-internal-label[interface=popover]',
+        text: 'ion-select ion-popover internal-label',
       },
     ];
 
   byTextWithSelectors.forEach((textAndSelector) => {
-    describe(`find ${textAndSelector.elementSelector} using text`, () => {
+    describe(`find ${textAndSelector.text} using text`, () => {
       it(`can be found with "${textAndSelector.text}"`, () => {
         cy.get(textAndSelector.elementSelector)
           .should('have.length', 1) // check that just one is tested
