@@ -165,10 +165,15 @@ class IonRangeCypress
     ionRange: GenericIonRange<IonRangeObjectValue>,
     options: IonRangeCypressMoveToValueOptions<IonRangeObjectValue>
   ): Cypress.Chainable<JQuery<HTMLIonRangeElement>> {
+    const upperValue =
+      typeof ionRange.value === 'number'
+        ? ionRange.value
+        : ionRange.value.upper;
+
     // Move upper
     return this.moveToNumberValue({
       ionRange,
-      currentValue: ionRange.value.upper as number,
+      currentValue: upperValue,
       knobSelector: RangeKnobSelector.Upper,
       options: {
         ...options,
