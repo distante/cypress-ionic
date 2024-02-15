@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@ionic/core/css/ionic.bundle.css"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <script
+      type="module"
+      src="/node_modules/@ionic/core/dist/esm/index.js"
+    ></script>
+    <script nomodule src="/node_modules/@ionic/core/dist/index.js"></script>
+    <script type="module" src="assets/ion-range.mjs "></script>
+
+    <title>Cypress Ionic Tester</title>
+  </head>
+  <body>
+    <main>
+      <ion-item class="ion-range">
+        <ion-range
+          class="regular"
+          min="-100"
+          max="100"
+          value="50"
+          pin
+          color="secondary"
+        >
+          <div class="end-slot" slot="end">50</div>
+        </ion-range>
+      </ion-item>
+
+      <ion-item class="ion-range-steps">
+        <ion-range
+          min="-100"
+          max="100"
+          step="10"
+          value="50"
+          snaps
+          color="danger"
+        >
+          <div class="end-slot" slot="end">50</div>
+        </ion-range>
+      </ion-item>
+
+      <ion-item class="ion-range-dual">
+        <ion-range min="-100" max="100" dual-knobs pin color="dark">
+          <div class="end-slot" slot="end">-50/50</div>
+        </ion-range>
+      </ion-item>
+    </main>
+  </body>
+</html>
