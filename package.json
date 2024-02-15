@@ -53,12 +53,12 @@
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
     "@compodoc/live-server": "^1.2.2",
-    "@ionic/core": "^6.0.0",
-    "@testing-library/cypress": "^8.0.2",
+    "@ionic/core": "^7.7.2",
+    "@testing-library/cypress": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "chalk": "^5.0.0",
-    "cypress": "^9.2.0",
+    "cypress": "^13.6.4",
     "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
@@ -76,12 +76,12 @@
     "typescript-transform-paths": "^3.3.1"
   },
   "peerDependencies": {
-    "@ionic/core": ">= 5.0.0",
-    "@testing-library/cypress": ">= 7.0.0",
-    "cypress": ">= 7.0.0"
+    "@ionic/core": ">= 7.0.0",
+    "@testing-library/cypress": ">= 9.0.0",
+    "cypress": ">= 9.0.0"
   },
   "oldSupportedVersions": {
-    "ionicCore5": "^5.0.0"
+    "ionicCore5": "^6.0.0"
   },
   "release-it": {
     "hooks": {
