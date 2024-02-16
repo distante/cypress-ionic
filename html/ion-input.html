@@ -21,10 +21,20 @@
   </head>
   <body>
     <main>
-      <h1>Ion Input</h1>
-      <ion-item>
+      <h2>Ion Input with external label</h2>
+      <ion-item class="external-label">
         <ion-label position="floating">ion-input</ion-label>
         <ion-input></ion-input>
+      </ion-item>
+
+      <h2>Ion Input with internal label</h2>
+      <ion-item class="internal-label">
+        <ion-input label="ion-input-with-internal-label"></ion-input>
+      </ion-item>
+
+      <h2>Ion Input with internal aria-label</h2>
+      <ion-item class="internal-aria-label">
+        <ion-input aria-label="ion-input-with-internal-label"></ion-input>
       </ion-item>
 
       <ion-button href="/">👈 Back To Main</ion-button>
