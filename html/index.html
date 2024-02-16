@@ -39,42 +39,11 @@
         <ion-button>ion-button text</ion-button>
       </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">ion-input</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-
-      <ion-item class="ion-range">
-        <ion-range
-          class="regular"
-          min="-100"
-          max="100"
-          value="50"
-          pin
-          color="secondary"
-        >
-          <div class="end-slot" slot="end">50</div>
-        </ion-range>
-      </ion-item>
-
-      <ion-item class="ion-range-steps">
-        <ion-range
-          min="-100"
-          max="100"
-          step="10"
-          value="50"
-          snaps
-          color="danger"
-        >
-          <div class="end-slot" slot="end">50</div>
-        </ion-range>
-      </ion-item>
-
-      <ion-item class="ion-range-dual">
-        <ion-range min="-100" max="100" dual-knobs pin color="dark">
-          <div class="end-slot" slot="end">-50/50</div>
-        </ion-range>
-      </ion-item>
+      <ion-button-group>
+        <ion-button href="./ion-input.html">To Ion Input Page</ion-button>
+        <ion-button href="./ion-range.html">To Ion Range Page</ion-button>
+        <ion-button href="./ion-select.html">To Ion Select Page</ion-button>
+      </ion-button-group>
     </main>
   </body>
 </html>

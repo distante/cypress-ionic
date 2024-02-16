@@ -9,7 +9,7 @@ defineCustomElements(window).then(() => {
   const rangesIntervals = new Array(ranges.length);
   document.querySelectorAll('ion-range').forEach((ionRange, i) => {
     ionRange.addEventListener('ionChange', (event) => {
-      console.log('ionRange ionChange event', event);
+      // console.log('ionRange ionChange event', event);
       clearInterval(rangesIntervals[i]);
       const targetIonRange = event.target;
 

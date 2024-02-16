@@ -4,7 +4,7 @@ import * as testHelpers from '../../../test-helpers/test-helpers.js';
 describe('Ion Input', () => {
   const selector = 'ion-input';
   beforeEach(() => {
-    cy.visit('./');
+    cy.visit('./ion-input.html');
   });
 
   it('can be written on by string selector', () => {
