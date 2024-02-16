@@ -73,6 +73,21 @@ describe('IonSelect', () => {
           'ion-select#ion-select-ion-popover-internal-label[interface=popover]',
         text: 'ion-select ion-popover internal-label',
       },
+      {
+        elementSelector:
+          'ion-select#ion-select-ion-alert-internal-label-angular[interface=alert]',
+        text: 'ion-select ion-alert angular-internal-label',
+      },
+      {
+        elementSelector:
+          'ion-select#ion-select-ion-action-sheet-internal-label-angular[interface=action-sheet]',
+        text: 'ion-select ion-action-sheet angular-internal-label',
+      },
+      {
+        elementSelector:
+          'ion-select#ion-select-ion-popover-internal-label-angular[interface=popover]',
+        text: 'ion-select ion-popover angular-internal-label',
+      },
     ];
 
   byTextWithSelectors.forEach((textAndSelector) => {

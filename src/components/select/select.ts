@@ -78,6 +78,8 @@ class Select implements IIonSelectFunctions {
     const selectors: string[] = [
       `ion-select.hydrated[aria-label*="${text}"]`,
       `ion-select.hydrated[label*="${text}"]`,
+      `ion-select.hydrated[ng-reflect-aria-label*="${text}"]`,
+      `ion-select.hydrated[ng-reflect-label*="${text}"]`,
     ];
     return cy
       .log(`finding ion select with label "${text}"`)
