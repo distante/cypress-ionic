@@ -21,10 +21,12 @@
   </head>
   <body>
     <main>
+      <h2>Get from supported selectors</h2>
       <ion-item class="for-get-from-supported-selector">
         <ion-label data-testId="testing-test-id">Label With Test Id</ion-label>
         <ion-label class="testing-class">Label With Class</ion-label>
         <ion-range
+          aria-label="not-important"
           class="ion-range-to-test-hydration"
           min="-100"
           max="100"
