@@ -15,19 +15,16 @@
       src="/node_modules/@ionic/core/dist/esm/index.js"
     ></script>
     <script nomodule src="/node_modules/@ionic/core/dist/index.js"></script>
-    <script type="module" src="assets/scripts.mjs "></script>
+    <script type="module" src="assets/ion-range.mjs "></script>
 
     <title>Cypress Ionic Tester</title>
   </head>
   <body>
     <main>
-      <h2>Get from supported selectors</h2>
-      <ion-item class="for-get-from-supported-selector">
-        <ion-label data-testId="testing-test-id">Label With Test Id</ion-label>
-        <ion-label class="testing-class">Label With Class</ion-label>
+      <h2>Ion Range</h2>
+      <ion-item class="ion-range">
         <ion-range
-          aria-label="not-important"
-          class="ion-range-to-test-hydration"
+          class="regular"
           min="-100"
           max="100"
           value="50"
@@ -37,15 +34,27 @@
           <div class="end-slot" slot="end">50</div>
         </ion-range>
       </ion-item>
-      <ion-item>
-        <ion-button>ion-button text</ion-button>
+
+      <ion-item class="ion-range-steps">
+        <ion-range
+          min="-100"
+          max="100"
+          step="10"
+          value="50"
+          snaps
+          color="danger"
+        >
+          <div class="end-slot" slot="end">50</div>
+        </ion-range>
       </ion-item>
 
-      <ion-button-group>
-        <ion-button href="./ion-input.html">To Ion Input Page</ion-button>
-        <ion-button href="./ion-range.html">To Ion Range Page</ion-button>
-        <ion-button href="./ion-select.html">To Ion Select Page</ion-button>
-      </ion-button-group>
+      <ion-item class="ion-range-dual">
+        <ion-range min="-100" max="100" dual-knobs pin color="dark">
+          <div class="end-slot" slot="end">-50/50</div>
+        </ion-range>
+      </ion-item>
+
+      <ion-button href="/">👈 Back To Main</ion-button>
     </main>
   </body>
 </html>

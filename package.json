@@ -13,13 +13,13 @@
   },
   "scripts": {
     "prepare": "husky install && ts-patch install -s",
-    "serve": "node ./scripts/serve.mjs",
+    "serve": "tsx ./scripts/serve.mjs",
     "develop": "start-server-and-test serve http://localhost:3999 test-open",
     "test-open": "cypress open",
     "test": "cypress run",
     "test-ci": "cypress run --config video=false",
     "full-test": "start-server-and-test serve http://localhost:3999 test-ci",
-    "ci": "node --experimental-json-modules ./scripts/test.mjs",
+    "ci": "tsx --experimental-json-modules ./scripts/test.mjs",
     "build": "tsc --project tsconfig.json",
     "make-docs": "typedoc",
     "tsc:check": "tsc --noEmit",
@@ -50,15 +50,15 @@
   "author": "Saninn Salas Diaz",
   "license": "ISC",
   "devDependencies": {
-    "@commitlint/cli": "^16.0.1",
-    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/cli": "^18.6.1",
+    "@commitlint/config-conventional": "^18.6.2",
     "@compodoc/live-server": "^1.2.2",
-    "@ionic/core": "^6.0.0",
-    "@testing-library/cypress": "^8.0.2",
+    "@ionic/core": "^7.7.2",
+    "@testing-library/cypress": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "chalk": "^5.0.0",
-    "cypress": "^9.2.0",
+    "cypress": "^13.6.4",
     "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
@@ -66,22 +66,23 @@
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.2",
-    "release-it": "^14.11.8",
-    "start-server-and-test": "^1.14.0",
+    "release-it": "^17.0.5",
+    "start-server-and-test": "^2.0.3",
     "ts-patch": "^2.0.1",
     "tslib": "^2.3.1",
+    "tsx": "^4.7.1",
     "typedoc": "^0.22.10",
     "typedoc-plugin-missing-exports": "^0.22.6",
     "typescript": "^4.5.2",
     "typescript-transform-paths": "^3.3.1"
   },
   "peerDependencies": {
-    "@ionic/core": ">= 5.0.0",
-    "@testing-library/cypress": ">= 7.0.0",
-    "cypress": ">= 7.0.0"
+    "@ionic/core": ">= 7.0.0",
+    "@testing-library/cypress": ">= 9.0.0",
+    "cypress": ">= 9.0.0"
   },
   "oldSupportedVersions": {
-    "ionicCore5": "^5.0.0"
+    "ionicCore5": "^6.0.0"
   },
   "release-it": {
     "hooks": {
@@ -99,5 +100,12 @@
       "releaseName": "${version}",
       "assets": []
     }
+  },
+  "engines": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  },
+  "volta": {
+    "node": "20.11.0"
   }
 }

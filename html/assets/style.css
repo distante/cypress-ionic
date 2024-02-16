@@ -13,3 +13,8 @@ main {
   max-width: 500px;
   width: 80%;
 }
+
+h1,
+h2 {
+  color: white;
+}

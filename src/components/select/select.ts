@@ -75,28 +75,27 @@ class Select implements IIonSelectFunctions {
   findIonSelectByLabelText(
     text: string
   ): CypressIonicReturn<HTMLIonSelectElement> {
-    const wantedWords = text.split(' ');
-    const wantedSelectors = wantedWords.map(
-      (word) => `[aria-label~="${word}"]`
-    );
-    const finalSelector = `ion-select.hydrated${wantedSelectors.join('')}`;
-
+    const selectors: string[] = [
+      `ion-select.hydrated[aria-label*="${text}"]`,
+      `ion-select.hydrated[label*="${text}"]`,
+    ];
     return cy
       .log(`finding ion select with label "${text}"`)
-      .get<HTMLIonSelectElement>(finalSelector)
-      .then(($item) => {
-        const ariaLabelIncludesText = $item[0]
-          .getAttribute('aria-label')
-          ?.includes(text);
-        if (!ariaLabelIncludesText) {
-          cy.log(
-            'IonSelectCypress could not find the wanted label, it just found',
-            $item[0]
+      .get<HTMLIonSelectElement>(selectors.join(', '))
+      .then((ionSelects$) => {
+        if (!ionSelects$.length) {
+          throw new Error(
+            `No IonSelect with the given text was found (total IonSelect found: ${ionSelects$.length})`
           );
-          throw new Error('IonSelectCypress could not find the wanted label.');
         }
 
-        return $item;
+        if (ionSelects$.length > 1) {
+          throw new Error(
+            `Too many IonSelect found (total ion-selects found: ${ionSelects$.length})`
+          );
+        }
+
+        return ionSelects$;
       });
   }
 }

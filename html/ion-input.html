@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@ionic/core/css/ionic.bundle.css"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <script
+      type="module"
+      src="/node_modules/@ionic/core/dist/esm/index.js"
+    ></script>
+    <script nomodule src="/node_modules/@ionic/core/dist/index.js"></script>
+    <script type="module" src="assets/ion-range.mjs "></script>
+
+    <title>Cypress Ionic Tester</title>
+  </head>
+  <body>
+    <main>
+      <h2>Ion Input with external label</h2>
+      <ion-item class="external-label">
+        <ion-label position="floating">ion-input</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <h2>Ion Input with internal label</h2>
+      <ion-item class="internal-label">
+        <ion-input label="ion-input-with-internal-label"></ion-input>
+      </ion-item>
+
+      <h2>Ion Input with internal aria-label</h2>
+      <ion-item class="internal-aria-label">
+        <ion-input aria-label="ion-input-with-internal-label"></ion-input>
+      </ion-item>
+
+      <ion-button href="/">👈 Back To Main</ion-button>
+    </main>
+  </body>
+</html>

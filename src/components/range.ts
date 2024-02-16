@@ -129,11 +129,12 @@ class IonRangeCypress
     const totalMoves = Math.abs(currentValue - options.targetValue) / step;
     const finalMovesString = move.repeat(totalMoves);
 
+    cy.log(
+      `setting ionRange (knob: ${knobSelector}) from ${currentValue} to ${options.targetValue} (total moves : ${totalMoves})`
+    );
+
     return cy
       .wrap(handle)
-      .log(
-        `setting ionRange (knob: ${knobSelector}) from ${currentValue} to ${options.targetValue} (total moves : ${totalMoves})`
-      )
       .type(finalMovesString, { force: true, delay: 100 })
       .then(() => {
         /**
@@ -164,10 +165,15 @@ class IonRangeCypress
     ionRange: GenericIonRange<IonRangeObjectValue>,
     options: IonRangeCypressMoveToValueOptions<IonRangeObjectValue>
   ): Cypress.Chainable<JQuery<HTMLIonRangeElement>> {
+    const upperValue =
+      typeof ionRange.value === 'number'
+        ? ionRange.value
+        : ionRange.value.upper;
+
     // Move upper
     return this.moveToNumberValue({
       ionRange,
-      currentValue: ionRange.value.upper as number,
+      currentValue: upperValue,
       knobSelector: RangeKnobSelector.Upper,
       options: {
         ...options,

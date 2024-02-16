@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@ionic/core/css/ionic.bundle.css"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <script
+      type="module"
+      src="/node_modules/@ionic/core/dist/esm/index.js"
+    ></script>
+    <script nomodule src="/node_modules/@ionic/core/dist/index.js"></script>
+    <script type="module" src="assets/ion-select.mjs "></script>
+
+    <title>Cypress Ionic Tester</title>
+  </head>
+  <body>
+    <main>
+      <!-- #region Old without integrated label -->
+      <h2>Ion Select with external Label (old)</h2>
+      <ion-item class="ion-select">
+        <ion-label>ion-select ion-alert external-label</ion-label>
+        <ion-select
+          id="ion-select-ion-alert-external-label"
+          value="0"
+          ok-text="Okay"
+          cancel-text="Dismiss"
+          interface="alert"
+        >
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="ion-select">
+        <ion-label>ion-select ion-action-sheet external-label</ion-label>
+        <ion-select
+          id="ion-select-ion-action-sheet-external-label"
+          value="0"
+          ok-text="Okay"
+          cancel-text="Dismiss"
+          interface="action-sheet"
+        >
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="ion-select">
+        <ion-label>ion-select ion-popover external-label</ion-label>
+        <ion-select
+          id="ion-select-ion-popover-external-label"
+          value="0"
+          ok-text="Okay"
+          cancel-text="Dismiss"
+          interface="popover"
+        >
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- #endregion -->
+
+      <!-- #region New with integrated label -->
+
+      <h2>Ion Select with internal Label</h2>
+
+      <ion-item class="ion-select">
+        <ion-select
+          id="ion-select-ion-alert-internal-label"
+          label="ion-select ion-alert internal-label"
+          value="0"
+          ok-text="Okay"
+          cancel-text="Dismiss"
+          interface="alert"
+        >
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="ion-select">
+        <ion-select
+          id="ion-select-ion-action-sheet-internal-label"
+          label="ion-select ion-action-sheet internal-label"
+          value="0"
+          ok-text="Okay"
+          cancel-text="Dismiss"
+          interface="action-sheet"
+        >
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="ion-select">
+        <ion-label> </ion-label>
+        <ion-select
+          id="ion-select-ion-popover-internal-label"
+          label="ion-select ion-popover internal-label"
+          value="0"
+          ok-text="Okay"
+          cancel-text="Dismiss"
+          interface="popover"
+        >
+          <ion-select-option value="0">0</ion-select-option>
+          <ion-select-option value="1">1</ion-select-option>
+          <ion-select-option value="2">2</ion-select-option>
+          <ion-select-option value="3">3</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- #endregion -->
+
+      <ion-button href="/">👈 Back To Main</ion-button>
+    </main>
+  </body>
+</html>

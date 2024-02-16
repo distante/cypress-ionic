@@ -4,3 +4,4 @@ scripts/
 docs/
 **/.eslintrc.js
 commitlint.config.js
+cypress.config.ts

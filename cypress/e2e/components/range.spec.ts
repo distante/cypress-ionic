@@ -26,7 +26,7 @@ const selectorAndValues: Array<{
 
 describe('using valid valid ranges', () => {
   beforeEach(() => {
-    cy.visit('./');
+    cy.visit('./ion-range.html');
   });
 
   selectorAndValues.forEach((selectorAndValue) => {
@@ -125,7 +125,7 @@ describe('using it to values beyond their supported max/min does not hangs', () 
   ];
 
   beforeEach(() => {
-    cy.visit('./');
+    cy.visit('./ion-range.html');
   });
 
   outOfRangeValues.forEach((selectorAndValue) => {
