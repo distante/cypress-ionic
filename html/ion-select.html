@@ -21,10 +21,9 @@
   </head>
   <body>
     <main>
-      <!-- #region Old without integrated label -->
-      <h2>Ion Select with external Label (old)</h2>
+      <!-- #region Label Slot -->
+      <h2>Ion Select with Label slot</h2>
       <ion-item class="ion-select">
-        <ion-label>ion-select ion-alert external-label</ion-label>
         <ion-select
           id="ion-select-ion-alert-external-label"
           value="0"
@@ -32,6 +31,8 @@
           cancel-text="Dismiss"
           interface="alert"
         >
+          <div slot="label">ion-select ion-alert external-label</div>
+
           <ion-select-option value="0">0</ion-select-option>
           <ion-select-option value="1">1</ion-select-option>
           <ion-select-option value="2">2</ion-select-option>
@@ -40,7 +41,6 @@
       </ion-item>
 
       <ion-item class="ion-select">
-        <ion-label>ion-select ion-action-sheet external-label</ion-label>
         <ion-select
           id="ion-select-ion-action-sheet-external-label"
           value="0"
@@ -48,6 +48,8 @@
           cancel-text="Dismiss"
           interface="action-sheet"
         >
+          <div slot="label">ion-select ion-action-sheet external-label</div>
+
           <ion-select-option value="0">0</ion-select-option>
           <ion-select-option value="1">1</ion-select-option>
           <ion-select-option value="2">2</ion-select-option>
@@ -56,7 +58,6 @@
       </ion-item>
 
       <ion-item class="ion-select">
-        <ion-label>ion-select ion-popover external-label</ion-label>
         <ion-select
           id="ion-select-ion-popover-external-label"
           value="0"
@@ -64,6 +65,8 @@
           cancel-text="Dismiss"
           interface="popover"
         >
+          <div slot="label">ion-select ion-popover external-label</div>
+
           <ion-select-option value="0">0</ion-select-option>
           <ion-select-option value="1">1</ion-select-option>
           <ion-select-option value="2">2</ion-select-option>
@@ -75,7 +78,7 @@
 
       <!-- #region New with integrated label -->
 
-      <h2>Ion Select with internal Label</h2>
+      <h2>Ion Select with property Label</h2>
 
       <ion-item class="ion-select">
         <ion-select
@@ -110,7 +113,6 @@
       </ion-item>
 
       <ion-item class="ion-select">
-        <ion-label> </ion-label>
         <ion-select
           id="ion-select-ion-popover-internal-label"
           label="ion-select ion-popover internal-label"
@@ -165,7 +167,6 @@
       </ion-item>
 
       <ion-item class="ion-select">
-        <ion-label> </ion-label>
         <ion-select
           id="ion-select-ion-popover-internal-label-angular"
           ng-reflect-label="ion-select ion-popover angular-internal-label"

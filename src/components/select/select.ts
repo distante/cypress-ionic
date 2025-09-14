@@ -80,6 +80,7 @@ class Select implements IIonSelectFunctions {
       `ion-select.hydrated[label*="${text}"]`,
       `ion-select.hydrated[ng-reflect-aria-label*="${text}"]`,
       `ion-select.hydrated[ng-reflect-label*="${text}"]`,
+      `ion-select.hydrated:has(div[slot="label"]:contains("${text}"))`,
     ];
     return cy
       .log(`finding ion select with label "${text}"`)

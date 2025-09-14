@@ -20,6 +20,11 @@ To be able to get a hold of Ionic's web components and with Cypress one has to i
 
 With this library you can just give the css selector of the Ionic Element, or the element itself and you can interact with it in an easy way.
 
+# Versioning
+
+- Ionic `<= 7` -> `0.x.x`
+- Ionic `>= 8` -> `1.x.x`
+
 ## Install
 
 `npm install @saninn/cypress-ionic --save-dev`.
