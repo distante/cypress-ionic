@@ -92,7 +92,7 @@ describe('IonSelect', () => {
 
   byTextWithSelectors.forEach((textAndSelector) => {
     describe(`find ${textAndSelector.text} using text`, () => {
-      it.only(`can be found with "${textAndSelector.text}"`, () => {
+      it(`can be found with "${textAndSelector.text}"`, () => {
         cy.get(textAndSelector.elementSelector)
           .should('have.length', 1) // check that just one is tested
           .then(($wantedIonSelect) => {
