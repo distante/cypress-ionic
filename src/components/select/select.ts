@@ -73,8 +73,24 @@ class Select implements IIonSelectFunctions {
   }
 
   findIonSelectByLabelText(
-    text: string
+    text: string,
+    options?: {
+      /**
+       * Helpful to find Ionic components with Angular `[label]` bindings
+       */
+      inShadowDOM?: boolean;
+    }
   ): CypressIonicReturn<HTMLIonSelectElement> {
+    if (options?.inShadowDOM) {
+      return cy
+        .log(`finding ion select with label "${text}" in shadowDom`)
+        .get('ion-select.hydrated')
+        .shadow()
+        .find('div[part="label"]')
+        .contains(text)
+        .closest('ion-select.hydrated');
+    }
+
     const selectors: string[] = [
       `ion-select.hydrated[aria-label*="${text}"]`,
       `ion-select.hydrated[label*="${text}"]`,
