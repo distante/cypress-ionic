@@ -3,7 +3,7 @@
 
 <span style="font-size:2em">👨‍💻💻</span>
 
-A set of helper functions to tests your Ionic apps with Cypress
+A set of helper functions to tests your Ionic apps with Cypress (0 dependencies)
 
 <div align="center">
 
