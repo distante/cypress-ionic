@@ -101,6 +101,9 @@
       "assets": []
     }
   },
+  "overrides": {
+    "undici": ">=6.24.0"
+  },
   "volta": {
     "node": "22.18.0",
     "npm": "10.9.3"
