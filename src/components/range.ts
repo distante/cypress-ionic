@@ -118,7 +118,7 @@ class IonRangeCypress implements CypressIonicComponentClass<
 
     if (!handle) {
       throw new Error(
-        'No Handle was found in th shadow root. Is the element hydrated?',
+        'No Handle was found in the shadow root. Is the element hydrated?',
       );
     }
 
