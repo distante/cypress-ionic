@@ -1,6 +1,6 @@
 {
   "name": "@saninn/cypress-ionic",
-  "version": "1.1.1",
+  "version": "1.1.0",
   "description": "A set of functions to help you interact with Ionic Framework elements in your Cypress tests",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -24,7 +24,7 @@
     "make-docs": "typedoc",
     "tsc:check": "tsc --noEmit",
     "prettier:check": "prettier --config ./.prettierrc ./src --check",
-    "release": "release-it --verbose --ci",
+    "release": "release-it --verbose",
     "release:patch": "release-it patch --verbose --ci",
     "release:minor": "release-it minor --verbose --ci",
     "release:major": "release-it major --verbose --ci",
