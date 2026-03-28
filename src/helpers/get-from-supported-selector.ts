@@ -3,7 +3,7 @@ import { CypressIonicReturn, SupportedSelectors } from '../interfaces';
  * @internal
  */
 export function getFromSupportedSelector<T extends Element>(
-  selector: SupportedSelectors<T>
+  selector: SupportedSelectors<T>,
 ): CypressIonicReturn<T> {
   if (typeof selector === 'string') {
     return cy.get<T>(`${selector}.hydrated`);
@@ -16,12 +16,12 @@ export function getFromSupportedSelector<T extends Element>(
 
   return (selector as unknown as CypressIonicReturn<T>).should(
     'have.class',
-    'hydrated'
+    'hydrated',
   );
 }
 
 function isJQuery<T extends Element>(
-  selector: SupportedSelectors<T>
+  selector: SupportedSelectors<T>,
 ): selector is JQuery<T> {
   return !!(<JQuery<T>>selector).jquery;
 }

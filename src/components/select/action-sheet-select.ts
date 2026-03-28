@@ -9,7 +9,7 @@ export class ActionSheetSelect extends IonSelectFunctions {
 
   selectByOptionText(
     $ionSelect: JQuery<HTMLIonSelectElement>,
-    optionText: string
+    optionText: string,
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return this.getOptionButtonsContainer($ionSelect)
       .findByText(optionText)
@@ -20,7 +20,7 @@ export class ActionSheetSelect extends IonSelectFunctions {
 
   selectByOptionIndex(
     $ionSelect: JQuery<HTMLIonSelectElement>,
-    optionIndex: number
+    optionIndex: number,
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return this.clickOnWantedOption($ionSelect, optionIndex);
   }

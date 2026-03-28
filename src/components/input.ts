@@ -1,12 +1,13 @@
 import { CypressIonicComponentClass, SupportedSelectors } from '@interfaces';
 import { getFromSupportedSelector } from '@helpers';
 
-class IonInputCypress
-  implements CypressIonicComponentClass<IonInputCypress, HTMLIonInputElement>
-{
+class IonInputCypress implements CypressIonicComponentClass<
+  IonInputCypress,
+  HTMLIonInputElement
+> {
   public write(
     selector: SupportedSelectors<HTMLIonInputElement>,
-    text: string
+    text: string,
   ) {
     return getFromSupportedSelector<HTMLIonInputElement>(selector).then(
       ($ionInput) => {
@@ -15,7 +16,7 @@ class IonInputCypress
           .find('input')
           .type(text)
           .then(() => $ionInput);
-      }
+      },
     );
   }
 
@@ -27,7 +28,7 @@ class IonInputCypress
           .find('input')
           .clear()
           .then(() => $ionInput);
-      }
+      },
     );
   }
 }

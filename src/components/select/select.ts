@@ -12,7 +12,7 @@ const popoverSelect = new PopoverSelect();
 
 class Select implements IIonSelectFunctions {
   private getSelectInterfaceImplementor(
-    selector: JQuery<HTMLIonSelectElement>
+    selector: JQuery<HTMLIonSelectElement>,
   ): Cypress.Chainable<IonSelectFunctions> {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(
       ($ionSelectElement) => {
@@ -27,13 +27,13 @@ class Select implements IIonSelectFunctions {
           default:
             throw new Error(`interface "${interfaceOfSelect}" not implemented`);
         }
-      }
+      },
     );
   }
 
   selectByOptionIndex(
     selector: SupportedSelectors<HTMLIonSelectElement>,
-    optionIndex: number
+    optionIndex: number,
   ) {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(
       ($ionSelect) => {
@@ -41,17 +41,17 @@ class Select implements IIonSelectFunctions {
           (ionsSelectFunctionImplementor) => {
             return ionsSelectFunctionImplementor.selectByOptionIndex(
               $ionSelect,
-              optionIndex
+              optionIndex,
             );
-          }
+          },
         );
-      }
+      },
     );
   }
 
   selectByOptionText(
     selector: SupportedSelectors<HTMLIonSelectElement>,
-    optionText: string
+    optionText: string,
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(
       ($ionSelect) => {
@@ -65,10 +65,10 @@ class Select implements IIonSelectFunctions {
                   .then((v) => {
                     return cy.wrap(v);
                   });
-              }
+              },
             );
           });
-      }
+      },
     );
   }
 
@@ -79,7 +79,7 @@ class Select implements IIonSelectFunctions {
        * Helpful to find Ionic components with Angular `[label]` bindings
        */
       inShadowDOM?: boolean;
-    }
+    },
   ): CypressIonicReturn<HTMLIonSelectElement> {
     if (options?.inShadowDOM) {
       return cy
@@ -104,13 +104,13 @@ class Select implements IIonSelectFunctions {
       .then((ionSelects$) => {
         if (!ionSelects$.length) {
           throw new Error(
-            `No IonSelect with the given text was found (total IonSelect found: ${ionSelects$.length})`
+            `No IonSelect with the given text was found (total IonSelect found: ${ionSelects$.length})`,
           );
         }
 
         if (ionSelects$.length > 1) {
           throw new Error(
-            `Too many IonSelect found (total ion-selects found: ${ionSelects$.length})`
+            `Too many IonSelect found (total ion-selects found: ${ionSelects$.length})`,
           );
         }
 
