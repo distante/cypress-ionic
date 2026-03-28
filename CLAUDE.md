@@ -81,6 +81,10 @@ Aliases are resolved at build time by `typescript-transform-paths` (ts-patch plu
 
 - **Prefer backward-compatible changes.** When a fix can support both the current and a newer version of a dependency (e.g. via comma-separated CSS selectors, feature detection, or a simple fallback), do so rather than raising the `peerDependency` floor. Only drop support for a version when backward compatibility is genuinely impossible.
 
+## Development Philosophy
+
+- **Prefer backward-compatible changes.** When a fix can support both the current and a newer version of a dependency (e.g. via comma-separated CSS selectors, feature detection, or a simple fallback), do so rather than raising the `peerDependency` floor. Only drop support for a version when backward compatibility is genuinely impossible.
+
 ## Commit conventions
 
 Commits must follow Conventional Commits (enforced by commitlint + Husky). Allowed types: `build`, `chore`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`, `release`, `wip`.

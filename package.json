@@ -1,6 +1,6 @@
 {
   "name": "@saninn/cypress-ionic",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A set of functions to help you interact with Ionic Framework elements in your Cypress tests",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -53,7 +53,7 @@
     "@commitlint/cli": "^18.6.1",
     "@commitlint/config-conventional": "^18.6.2",
     "@compodoc/live-server": "^1.2.3",
-    "@ionic/core": "^8.7.3",
+    "@ionic/core": "^8.8.0",
     "@testing-library/cypress": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",

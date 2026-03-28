@@ -41,7 +41,7 @@ describe('Get From Supported Selector', () => {
       getFromSupportedSelector<IonRange>('.ion-range-to-test-hydration')
         .then(($ionRange) => {
           return $ionRange[0].shadowRoot?.querySelector(
-            '.range-knob-handle.range-knob-a'
+            '.range-knob-handle-a, .range-knob-handle.range-knob-a'
           );
         })
         .should('exist');
@@ -51,7 +51,7 @@ describe('Get From Supported Selector', () => {
       getFromSupportedSelector<IonRange>(cy.get('.ion-range-to-test-hydration'))
         .then(($ionRange) => {
           return $ionRange[0].shadowRoot?.querySelector(
-            '.range-knob-handle.range-knob-a'
+            '.range-knob-handle-a, .range-knob-handle.range-knob-a'
           );
         })
         .should('exist');
@@ -63,7 +63,7 @@ describe('Get From Supported Selector', () => {
         getFromSupportedSelector($jQueryObject)
           .then(($ionRange) => {
             return $ionRange[0].shadowRoot?.querySelector(
-              '.range-knob-handle.range-knob-a'
+              '.range-knob-handle-a, .range-knob-handle.range-knob-a'
             );
           })
           .should('exist');
