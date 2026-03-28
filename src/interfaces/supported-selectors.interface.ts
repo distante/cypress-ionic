@@ -1,6 +1,4 @@
-import type { HTMLStencilElement } from '@ionic/core';
-
-export type SupportedSelectors<T extends HTMLStencilElement> =
+export type SupportedSelectors<T extends Element> =
   | string
   | Cypress.Chainable<JQuery<HTMLElement>>
   | JQuery<HTMLElement>

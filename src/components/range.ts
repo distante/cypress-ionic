@@ -22,9 +22,9 @@ interface IonRangeObjectValue {
 
 /** @internal */
 enum RangeKnobSelector {
-  Single = '.range-knob-handle.range-knob-a',
-  Lower = '.range-knob-handle.range-knob-a',
-  Upper = '.range-knob-handle.range-knob-b',
+  Single = '.range-knob-handle-a, .range-knob-handle.range-knob-a',
+  Lower = '.range-knob-handle-a, .range-knob-handle.range-knob-a',
+  Upper = '.range-knob-handle-b, .range-knob-handle.range-knob-b',
 }
 
 export interface IonRangeCypressMoveToValueOptions<T = RangeValue> {

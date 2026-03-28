@@ -41,3 +41,4 @@ dist-bundles/
 dist-zips/
 cypress/videos
 cypress/screenshots
+.specs

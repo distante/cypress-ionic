@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "Context7": {
+      "type": "stdio",
+      "command": "docker",
+      "args": ["run", "-i", "--rm", "--name", "Context7-MCP", "context7-mcp"]
+    }
+  }
+}
