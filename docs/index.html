@@ -1,60 +1,37 @@
-<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@saninn/cypress-ionic - v1.1.0</title><meta name="description" content="Documentation for @saninn/cypress-ionic - v1.1.0"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@saninn/cypress-ionic - v1.1.0</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@saninn/cypress-ionic - v1.1.0 </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><div align="center">
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@saninn/cypress-ionic - v1.1.2</title><meta name="description" content="Documentation for @saninn/cypress-ionic"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">@saninn/cypress-ionic - v1.1.2</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>@saninn/cypress-ionic - v1.1.2</h1></div><div class="tsd-panel tsd-typography"><div align="center">
   <h1>@saninn/cypress-ionic</h1>
-
 <p><span style="font-size:2em">👨‍💻💻</span></p>
 <p>A set of helper functions to tests your Ionic apps with Cypress (0 dependencies)</p>
 <div align="center">
-
 <p><a href="https://github.com/distante/cypress-ionic/actions/workflows/node.js.yml"><img src="https://github.com/distante/cypress-ionic/actions/workflows/node.js.yml/badge.svg" alt="Build Status"></a> <a href="https://snyk.io/test/github/distante/cypress-ionic?targetFile=package.json"><img src="https://snyk.io/test/github/distante/cypress-ionic/badge.svg?targetFile=package.json" alt="Known Vulnerabilities"></a> <a href="https://codeclimate.com/github/distante/cypress-ionic/maintainability"><img src="https://api.codeclimate.com/v1/badges/171b458d255d4112ffd6/maintainability" alt="Maintainability"></a></p>
 </div>
 </div>
-
 <hr />
-
-
-<a href="#the-problem" id="the-problem" style="color: inherit; text-decoration: none;">
-  <h2>The Problem</h2>
-</a>
-<p>To be able to get a hold of Ionic&#39;s web components and with Cypress one has to inspect their ShadowDom and create cypress helper commands to change them for each project, which is time consuming.</p>
+<h2 id="the-problem" class="tsd-anchor-link">The Problem<a href="#the-problem" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>To be able to get a hold of Ionic's web components and with Cypress one has to inspect their ShadowDom and create cypress helper commands to change them for each project, which is time consuming.</p>
 <p>With this library you can just give the css selector of the Ionic Element, or the element itself and you can interact with it in an easy way.</p>
-
-<a href="#versioning" id="versioning" style="color: inherit; text-decoration: none;">
-  <h1>Versioning</h1>
-</a>
+<h1 id="versioning" class="tsd-anchor-link">Versioning<a href="#versioning" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
 <ul>
 <li>Ionic <code>&lt;= 7</code> -&gt; <code>0.x.x</code></li>
 <li>Ionic <code>&gt;= 8</code> -&gt; <code>1.x.x</code></li>
 </ul>
-
-<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-  <h2>Install</h2>
-</a>
+<h2 id="install" class="tsd-anchor-link">Install<a href="#install" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p><code>npm install @saninn/cypress-ionic --save-dev</code>.</p>
 <p>Then enable ShadowDom access on your Cypress Project:</p>
-<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-1">&quot;$schema&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;https://on.cypress.io/cypress.schema.json&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">&quot;includeShadowDom&quot;</span><span class="hl-0">: </span><span class="hl-3">true</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">...</span><br/><span class="hl-0">}</span>
-</code></pre>
+<pre><code class="json"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-1">&quot;$schema&quot;</span><span class="hl-0">: </span><span class="hl-2">&quot;https://on.cypress.io/cypress.schema.json&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-1">&quot;includeShadowDom&quot;</span><span class="hl-0">: </span><span class="hl-3">true</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">...</span><br/><span class="hl-0">}</span>
+</code><button type="button">Copy</button></pre>
+
 <p>** Although it is not needed, it is recommended to disable Ionic animations when possible. That said, this library let the animations active so timing issues are handled.</p>
-
-<a href="#basic-usage" id="basic-usage" style="color: inherit; text-decoration: none;">
-  <h2>Basic usage</h2>
-</a>
+<h2 id="basic-usage" class="tsd-anchor-link">Basic usage<a href="#basic-usage" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>Each helper function returns an <code>Cypress.Chainable&lt;JQuery&lt;IonComponent&gt;&gt;</code> object with the component that was changed. So an example of usage could be</p>
-<pre><code class="language-ts"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-6">ionRangeCypress</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-2">&#39;@saninn/cypress&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-7">it</span><span class="hl-0">(</span><span class="hl-2">&#39;can be changed by set value&#39;</span><span class="hl-0">, () </span><span class="hl-3">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-6">ionRangeCypress</span><span class="hl-0">.</span><span class="hl-7">setValue</span><span class="hl-0">(</span><span class="hl-2">&#39;ion-range.my-ion-range&#39;</span><span class="hl-0">, </span><span class="hl-8">42</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-6">cy</span><span class="hl-0">.</span><span class="hl-7">get</span><span class="hl-0">(</span><span class="hl-2">&#39;my-view-item&#39;</span><span class="hl-0">).</span><span class="hl-7">should</span><span class="hl-0">(</span><span class="hl-2">&#39;eq&#39;</span><span class="hl-0">, </span><span class="hl-2">&#39;42&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">});</span>
-</code></pre>
+<pre><code class="ts"><span class="hl-5">import</span><span class="hl-0"> { </span><span class="hl-6">ionRangeCypress</span><span class="hl-0"> } </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-2">&#39;@saninn/cypress&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-7">it</span><span class="hl-0">(</span><span class="hl-2">&#39;can be changed by set value&#39;</span><span class="hl-0">, () </span><span class="hl-3">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-6">ionRangeCypress</span><span class="hl-0">.</span><span class="hl-7">setValue</span><span class="hl-0">(</span><span class="hl-2">&#39;ion-range.my-ion-range&#39;</span><span class="hl-0">, </span><span class="hl-8">42</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-6">cy</span><span class="hl-0">.</span><span class="hl-7">get</span><span class="hl-0">(</span><span class="hl-2">&#39;my-view-item&#39;</span><span class="hl-0">).</span><span class="hl-7">should</span><span class="hl-0">(</span><span class="hl-2">&#39;eq&#39;</span><span class="hl-0">, </span><span class="hl-2">&#39;42&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">});</span>
+</code><button type="button">Copy</button></pre>
 
-<a href="#api-and-documentation" id="api-and-documentation" style="color: inherit; text-decoration: none;">
-  <h2>API and Documentation</h2>
-</a>
+<h2 id="api-and-documentation" class="tsd-anchor-link">API and Documentation<a href="#api-and-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p><a href="https://cypress-ionic.saninnsalas.com">See the generated documentation here</a></p>
-
-<a href="#license" id="license" style="color: inherit; text-decoration: none;">
-  <h2>License</h2>
-</a>
+<h2 id="license" class="tsd-anchor-link">License<a href="#license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p><a href="/LICENSE">AGPLv3</a></p>
-
-<a href="#development" id="development" style="color: inherit; text-decoration: none;">
-  <h2>Development</h2>
-</a>
+<h2 id="development" class="tsd-anchor-link">Development<a href="#development" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>Each exported function is directly tested on Cypress.
 Call <code>npm run develop</code> to start a simple server and open cypress.
 You can see the served host on <code>http://localhost:3999</code> with:</p>
@@ -62,26 +39,17 @@ You can see the served host on <code>http://localhost:3999</code> with:</p>
 <li><a href="/html/index.html">html/index.html</a> is the file with the supported components.</li>
 <li><a href="/html/assets/scripts.mjs">html/assets/scripts.mjs</a> contains the Ionic initialization calls and some event listeners needed for testing.</li>
 </ul>
-
-<a href="#todo" id="todo" style="color: inherit; text-decoration: none;">
-  <h2>TODO.</h2>
-</a>
+<h2 id="todo" class="tsd-anchor-link">TODO.<a href="#todo" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <ul>
 <li>Dev Guidelines</li>
 <li>More components</li>
 </ul>
-
-<a href="#pull-requests-are-welcome" id="pull-requests-are-welcome" style="color: inherit; text-decoration: none;">
-  <h2>Pull requests are welcome</h2>
-</a>
+<h2 id="pull-requests-are-welcome" class="tsd-anchor-link">Pull requests are welcome<a href="#pull-requests-are-welcome" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p>❤</p>
-
-<a href="#find-me-🏃" id="find-me-🏃" style="color: inherit; text-decoration: none;">
-  <h1>Find me 🏃‍</h1>
-</a>
+<h1 id="find-me-🏃" class="tsd-anchor-link">Find me 🏃‍<a href="#find-me-🏃" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
 <ul>
 <li>Website <a href="https://www.saninnsalas.com">https://www.saninnsalas.com</a></li>
 <li>Twitter <a href="https://twitter.com/saninnsalas">@SaninnSalas</a></li>
 <li>Facebook <a href="https://www.facebook.com/SaninnSD/">@SaninnSalas</a></li>
 </ul>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class=" tsd-kind-namespace"><a href="modules/Details.html">Details</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-variable"><a href="modules.html#ionButtonCypress" class="tsd-kind-icon">ion<wbr/>Button<wbr/>Cypress</a></li><li class="tsd-kind-variable"><a href="modules.html#ionInputCypress" class="tsd-kind-icon">ion<wbr/>Input<wbr/>Cypress</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/IonRangeCypressMoveToValueOptions.html" class="tsd-kind-icon">Ion<wbr/>Range<wbr/>Cypress<wbr/>Move<wbr/>To<wbr/>Value<wbr/>Options</a></li><li class="tsd-kind-variable"><a href="modules.html#ionRangeCypress" class="tsd-kind-icon">ion<wbr/>Range<wbr/>Cypress</a></li><li class="tsd-kind-variable"><a href="modules.html#ionSelectCypress" class="tsd-kind-icon">ion<wbr/>Select<wbr/>Cypress</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><ul><li><a href="#the-problem"><span>The <wbr/>Problem</span></a></li></ul><a href="#versioning"><span>Versioning</span></a><ul><li><a href="#install"><span>Install</span></a></li><li><a href="#basic-usage"><span>Basic usage</span></a></li><li><a href="#api-and-documentation"><span>API and <wbr/>Documentation</span></a></li><li><a href="#license"><span>License</span></a></li><li><a href="#development"><span>Development</span></a></li><li><a href="#todo"><span>TODO.</span></a></li><li><a href="#pull-requests-are-welcome"><span>Pull requests are welcome</span></a></li></ul><a href="#find-me-🏃"><span>Find me 🏃‍</span></a></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">@saninn/cypress-ionic - v1.1.2</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer></footer><div class="overlay"></div></body></html>

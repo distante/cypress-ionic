@@ -3,7 +3,6 @@
   "entryPoints": ["./src/index.ts"],
   "out": "./docs",
   "hideGenerator": true,
-  "internalNamespace": "Details",
   "excludeExternals": true,
   "intentionallyNotExported": [],
   "entryPointStrategy": "Resolve",
