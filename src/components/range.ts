@@ -31,9 +31,10 @@ export interface IonRangeCypressMoveToValueOptions<T = RangeValue> {
   targetValue: T;
 }
 
-class IonRangeCypress
-  implements CypressIonicComponentClass<IonRangeCypress, HTMLIonRangeElement>
-{
+class IonRangeCypress implements CypressIonicComponentClass<
+  IonRangeCypress,
+  HTMLIonRangeElement
+> {
   /**
    * Sets the value or the {@link IonRange} programmatically and triggers
    * their `ionChangeEvent`. Use this is if middle events are not important
@@ -41,7 +42,7 @@ class IonRangeCypress
    */
   public setValue(
     ionCssSelector: SupportedSelectors<HTMLIonRangeElement>,
-    value: RangeValue
+    value: RangeValue,
   ): CypressIonicReturn<HTMLIonRangeElement> {
     return getFromSupportedSelector<HTMLIonRangeElement>(ionCssSelector).then(
       ($ionRange) => {
@@ -59,7 +60,7 @@ class IonRangeCypress
         ionRange.dispatchEvent(event);
 
         return cy.wrap($ionRange);
-      }
+      },
     );
   }
 
@@ -73,14 +74,14 @@ class IonRangeCypress
    */
   public moveToValue(
     ionCssSelector: SupportedSelectors<HTMLIonRangeElement>,
-    options: IonRangeCypressMoveToValueOptions
+    options: IonRangeCypressMoveToValueOptions,
   ): CypressIonicReturn<HTMLIonRangeElement> {
     return getFromSupportedSelector(ionCssSelector).then(($ionRange) => {
       const ionRange = $ionRange[0] as HTMLIonRangeElement;
 
       options.targetValue = this.normalizeRangeValue(
         options.targetValue,
-        ionRange
+        ionRange,
       );
       if (this.isOptionNumber(options)) {
         return this.moveToNumberValue({
@@ -93,7 +94,7 @@ class IonRangeCypress
 
       return this.moveToObjectValue(
         ionRange as GenericIonRange<IonRangeObjectValue>,
-        options as IonRangeCypressMoveToValueOptions<IonRangeObjectValue>
+        options as IonRangeCypressMoveToValueOptions<IonRangeObjectValue>,
       );
     });
   }
@@ -117,7 +118,7 @@ class IonRangeCypress
 
     if (!handle) {
       throw new Error(
-        'No Handle was found in th shadow root. Is the element hydrated?'
+        'No Handle was found in th shadow root. Is the element hydrated?',
       );
     }
 
@@ -130,7 +131,7 @@ class IonRangeCypress
     const finalMovesString = move.repeat(totalMoves);
 
     cy.log(
-      `setting ionRange (knob: ${knobSelector}) from ${currentValue} to ${options.targetValue} (total moves : ${totalMoves})`
+      `setting ionRange (knob: ${knobSelector}) from ${currentValue} to ${options.targetValue} (total moves : ${totalMoves})`,
     );
 
     return cy
@@ -144,7 +145,7 @@ class IonRangeCypress
         const neededObject = this.getFixTargetValue(
           ionRange,
           knobSelector,
-          options.targetValue
+          options.targetValue,
         );
         if (neededObject) {
           return cy.log('target value not arrived, fixing it').then(() =>
@@ -153,7 +154,7 @@ class IonRangeCypress
               currentValue: neededObject.currentValue,
               knobSelector,
               options,
-            })
+            }),
           );
         }
 
@@ -163,7 +164,7 @@ class IonRangeCypress
 
   private moveToObjectValue(
     ionRange: GenericIonRange<IonRangeObjectValue>,
-    options: IonRangeCypressMoveToValueOptions<IonRangeObjectValue>
+    options: IonRangeCypressMoveToValueOptions<IonRangeObjectValue>,
   ): Cypress.Chainable<JQuery<HTMLIonRangeElement>> {
     const upperValue =
       typeof ionRange.value === 'number'
@@ -194,7 +195,7 @@ class IonRangeCypress
       })
       .then(() => {
         cy.log(`ion range new value: ${JSON.stringify(ionRange.value)}`).wrap(
-          ionRange
+          ionRange,
         );
       });
   }
@@ -202,7 +203,7 @@ class IonRangeCypress
   private getFixTargetValue(
     ionRange: IonRange,
     knobSelector: RangeKnobSelector,
-    targetValue: number
+    targetValue: number,
   ): { targetValue: number; currentValue: number } | null {
     const currentValue = ionRange.value;
     if (typeof currentValue === 'number') {
@@ -219,14 +220,14 @@ class IonRangeCypress
     return this.fixTargetValueForObjectValue(
       currentValue,
       knobSelector,
-      targetValue
+      targetValue,
     );
   }
 
   private fixTargetValueForObjectValue(
     currentValue: IonRangeObjectValue,
     knobSelector: RangeKnobSelector,
-    targetValue: number
+    targetValue: number,
   ): { targetValue: number; currentValue: number } | null {
     if (knobSelector === RangeKnobSelector.Lower) {
       if (currentValue.lower === targetValue) {
@@ -250,7 +251,7 @@ class IonRangeCypress
   }
 
   private isOptionNumber(
-    options: IonRangeCypressMoveToValueOptions
+    options: IonRangeCypressMoveToValueOptions,
   ): options is IonRangeCypressMoveToValueOptions<number> {
     return typeof options.targetValue === 'number';
   }
@@ -258,7 +259,7 @@ class IonRangeCypress
   /** If the wanted value is big, just set it to the max allowed */
   private normalizeRangeValue(
     value: RangeValue,
-    ionRange: HTMLIonRangeElement
+    ionRange: HTMLIonRangeElement,
   ): RangeValue {
     if (typeof value === 'number') {
       return this.normalizeNumberValue(value, ionRange);
@@ -272,16 +273,16 @@ class IonRangeCypress
 
   private normalizeNumberValue(
     value: number,
-    ionRange: HTMLIonRangeElement
+    ionRange: HTMLIonRangeElement,
   ): number {
     if (value < ionRange.min) {
       cy.log(
-        `${value} is below the accepted min, setting it to ${ionRange.min}`
+        `${value} is below the accepted min, setting it to ${ionRange.min}`,
       );
       value = ionRange.min;
     } else if (value > ionRange.max) {
       cy.log(
-        `${value} is above the accepted max, setting it to ${ionRange.max}`
+        `${value} is above the accepted max, setting it to ${ionRange.max}`,
       );
       value = ionRange.max;
     }

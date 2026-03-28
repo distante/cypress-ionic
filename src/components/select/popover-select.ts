@@ -6,13 +6,13 @@ export class PopoverSelect extends IonSelectFunctions {
   constructor() {
     super(
       'ion-popover.hydrated ion-select-popover.hydrated ion-radio-group.hydrated',
-      'ion-item'
+      'ion-item',
     );
   }
 
   public selectByOptionText(
     selector: SupportedSelectors<HTMLIonSelectElement>,
-    optionText: string
+    optionText: string,
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(
       ($ionSelect) => {
@@ -21,18 +21,18 @@ export class PopoverSelect extends IonSelectFunctions {
           .parent()
           .click()
           .then(() => $ionSelect);
-      }
+      },
     );
   }
 
   selectByOptionIndex(
     selector: SupportedSelectors<HTMLIonSelectElement>,
-    optionIndex: number
+    optionIndex: number,
   ): CypressIonicReturn<HTMLIonSelectElement> {
     return getFromSupportedSelector<HTMLIonSelectElement>(selector).then(
       ($ionSelect) => {
         return this.clickOnWantedOption($ionSelect, optionIndex);
-      }
+      },
     );
   }
 }

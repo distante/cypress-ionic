@@ -6,7 +6,7 @@ import { CypressIonicFunction } from './cypress-ionic-function.interface';
  */
 export type CypressIonicComponentClass<
   TClassName,
-  TComponentType extends Element
+  TComponentType extends Element,
 > = {
   // eslint-disable-next-line @typescript-eslint/ban-types
   [K in keyof TClassName]: TClassName[K] extends Function

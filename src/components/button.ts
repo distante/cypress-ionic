@@ -1,9 +1,10 @@
 import { getFromSupportedSelector } from '@helpers';
 import { CypressIonicComponentClass, SupportedSelectors } from '@interfaces';
 
-class IonButtonCypress
-  implements CypressIonicComponentClass<IonButtonCypress, HTMLIonButtonElement>
-{
+class IonButtonCypress implements CypressIonicComponentClass<
+  IonButtonCypress,
+  HTMLIonButtonElement
+> {
   public click(selector: SupportedSelectors<HTMLIonButtonElement>) {
     return getFromSupportedSelector<HTMLIonButtonElement>(selector).then(
       ($ionButton) => {
@@ -13,13 +14,13 @@ class IonButtonCypress
           .find('button')
           .click({ force: true })
           .then(() => $ionButton);
-      }
+      },
     );
   }
 
   // @ts-expect-error This is a special case
   public clickByText(
-    text: string
+    text: string,
   ): Cypress.Chainable<JQuery<HTMLIonButtonElement>> {
     return cy
       .findByText(text)

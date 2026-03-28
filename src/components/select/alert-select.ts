@@ -7,7 +7,7 @@ export class AlertSelect extends IonSelectFunctions {
 
   selectByOptionIndex(
     $ionSelect: JQuery<HTMLIonSelectElement>,
-    optionIndex: number
+    optionIndex: number,
   ) {
     return this.clickOnWantedOption($ionSelect, optionIndex)
       .then(() => this.clickOkOnAlert())
@@ -16,7 +16,7 @@ export class AlertSelect extends IonSelectFunctions {
 
   selectByOptionText(
     $ionSelect: JQuery<HTMLIonSelectElement>,
-    optionText: string
+    optionText: string,
   ): Cypress.Chainable<JQuery<HTMLIonSelectElement>> {
     return this.getOptionButtonsContainer($ionSelect)
       .findByText(optionText)

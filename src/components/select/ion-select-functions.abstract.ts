@@ -4,21 +4,21 @@ import { CypressIonicReturn } from '@interfaces';
 export abstract class IonSelectFunctions {
   constructor(
     private readonly optionsContainerCSSSelector: string,
-    private readonly optionItemCSSSelector: string
+    private readonly optionItemCSSSelector: string,
   ) {}
 
   abstract selectByOptionIndex(
     $ionSelect: JQuery<HTMLIonSelectElement>,
-    optionIndex: number
+    optionIndex: number,
   ): CypressIonicReturn<HTMLIonSelectElement>;
 
   abstract selectByOptionText(
     $ionSelect: JQuery<HTMLIonSelectElement>,
-    optionText: string
+    optionText: string,
   ): CypressIonicReturn<HTMLIonSelectElement>;
 
   protected getOptionButtonsContainer(
-    $ionSelect: JQuery<HTMLIonSelectElement>
+    $ionSelect: JQuery<HTMLIonSelectElement>,
   ): Cypress.Chainable<JQuery<HTMLElement>> {
     return cy
       .wrap($ionSelect[0])
@@ -30,7 +30,7 @@ export abstract class IonSelectFunctions {
 
   protected clickOnWantedOption(
     $ionSelect: JQuery<HTMLIonSelectElement>,
-    optionIndex: number
+    optionIndex: number,
   ): Cypress.Chainable<JQuery<HTMLIonSelectElement>> {
     return this.getOptionButtonsContainer($ionSelect)
       .children(this.optionItemCSSSelector)
