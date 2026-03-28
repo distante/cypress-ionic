@@ -1,9 +1,8 @@
-import type { HTMLStencilElement } from '@ionic/core';
 import { CypressIonicReturn, SupportedSelectors } from '../interfaces';
 /**
  * @internal
  */
-export function getFromSupportedSelector<T extends HTMLStencilElement>(
+export function getFromSupportedSelector<T extends Element>(
   selector: SupportedSelectors<T>
 ): CypressIonicReturn<T> {
   if (typeof selector === 'string') {
@@ -21,7 +20,7 @@ export function getFromSupportedSelector<T extends HTMLStencilElement>(
   );
 }
 
-function isJQuery<T extends HTMLStencilElement>(
+function isJQuery<T extends Element>(
   selector: SupportedSelectors<T>
 ): selector is JQuery<T> {
   return !!(<JQuery<T>>selector).jquery;
