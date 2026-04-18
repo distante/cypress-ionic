@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/@ionic/core/css/ionic.bundle.css"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+
+    <script
+      type="module"
+      src="/node_modules/@ionic/core/dist/esm/index.js"
+    ></script>
+    <script nomodule src="/node_modules/@ionic/core/dist/index.js"></script>
+    <script type="module" src="assets/ion-tab-button.mjs"></script>
+
+    <title>Cypress Ionic Tester</title>
+  </head>
+  <body>
+    <main>
+      <h2>Ion Tab Button</h2>
+
+      <p id="tab-click-status"></p>
+
+      <ion-tab-bar>
+        <ion-tab-button tab="home" class="tab-home">
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="settings" class="tab-settings">
+          <ion-label>Settings</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="profile" class="tab-profile">
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+
+      <ion-button href="/">Back To Main</ion-button>
+    </main>
+  </body>
+</html>
