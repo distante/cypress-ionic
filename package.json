@@ -14,7 +14,7 @@
   "scripts": {
     "prepare": "husky && ts-patch install -s",
     "serve": "tsx ./scripts/serve.mjs",
-    "develop": "start-server-and-test serve http://localhost:3999 test-open",
+    "start": "start-server-and-test serve http://localhost:3999 test-open",
     "test-open": "cypress open",
     "test": "cypress run",
     "test-ci": "cypress run --config video=false",

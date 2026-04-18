@@ -28,7 +28,9 @@ export function getFromSupportedSelector<T extends Element>(
 function filterOutHiddenPage<T extends Element>(
   subject: CypressIonicReturn<T>,
 ): CypressIonicReturn<T> {
-  return subject.not('.ion-page-hidden *') as unknown as CypressIonicReturn<T>;
+  return subject.not(
+    '.ion-page-hidden, .ion-page-hidden *',
+  ) as unknown as CypressIonicReturn<T>;
 }
 
 function isJQuery<T extends Element>(

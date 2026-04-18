@@ -66,7 +66,7 @@ it('can be changed by set value', () => {
 ## Development
 
 Each exported function is directly tested on Cypress.
-Call `npm run develop` to start a simple server and open cypress.
+Call `npm run start` to start a simple server and open cypress.
 You can see the served host on `http://localhost:3999` with:
 
 - [html/index.html](/html/index.html) is the file with the supported components.

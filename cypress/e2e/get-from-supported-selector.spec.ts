@@ -36,6 +36,44 @@ describe('Get From Supported Selector', () => {
     });
   });
 
+  describe('returns only visible element when selector matches both hidden and visible pages', () => {
+    beforeEach(() => {
+      cy.document().then((doc) => {
+        doc.body.insertAdjacentHTML(
+          'beforeend',
+          `
+            <div class="ion-page ion-page-hidden">
+              <ion-label class="testing-class-conflict">Hidden Label</ion-label>
+            </div>
+            <div class="ion-page">
+              <ion-label class="testing-class-conflict">Visible Label</ion-label>
+            </div>
+          `,
+        );
+      });
+    });
+
+    it('css selector', () => {
+      getFromSupportedSelector('.testing-class-conflict')
+        .should('have.length', 1)
+        .should('have.text', 'Visible Label');
+    });
+
+    it('Chainable Object', () => {
+      getFromSupportedSelector(cy.get('.testing-class-conflict'))
+        .should('have.length', 1)
+        .should('have.text', 'Visible Label');
+    });
+
+    it('JQuery Object', () => {
+      cy.get('.testing-class-conflict').then(($jQueryObject) => {
+        getFromSupportedSelector($jQueryObject)
+          .should('have.length', 1)
+          .should('have.text', 'Visible Label');
+      });
+    });
+  });
+
   describe('ignores elements inside ion-page-hidden', () => {
     it('css selector', () => {
       getFromSupportedSelector('.testing-class-hidden').should(
