@@ -138,6 +138,22 @@ describe('Get From Supported Selector', () => {
           getFromSupportedSelector($els).should('have.length', 0);
         });
     });
+
+    it('css selector - returns empty set without timing out when all matches are hidden and not hydrated', () => {
+      cy.document().then((doc) => {
+        doc.body.insertAdjacentHTML(
+          'beforeend',
+          `<div class="ion-page ion-page-hidden">
+             <div class="testing-order-hidden-only">Hidden Only</div>
+           </div>`,
+        );
+      });
+
+      getFromSupportedSelector('.testing-order-hidden-only').should(
+        'have.length',
+        0,
+      );
+    });
   });
 
   describe('waiting for components hydration', () => {

@@ -1,4 +1,7 @@
 import { CypressIonicReturn, SupportedSelectors } from '../interfaces';
+
+const HIDDEN_PAGE_SELECTOR = '.ion-page-hidden, .ion-page-hidden *';
+
 /**
  * @internal
  */
@@ -6,7 +9,7 @@ export function getFromSupportedSelector<T extends Element>(
   selector: SupportedSelectors<T>,
 ): CypressIonicReturn<T> {
   if (typeof selector === 'string') {
-    return filterOutHiddenPage(cy.get<T>(`${selector}.hydrated`));
+    return filterThenAssertHydrated(cy.get<T>(selector));
   }
 
   if (isJQuery<T>(selector)) {
@@ -16,21 +19,11 @@ export function getFromSupportedSelector<T extends Element>(
   return filterThenAssertHydrated(selector as unknown as CypressIonicReturn<T>);
 }
 
-function filterOutHiddenPage<T extends Element>(
-  subject: CypressIonicReturn<T>,
-): CypressIonicReturn<T> {
-  return subject.not(
-    '.ion-page-hidden, .ion-page-hidden *',
-  ) as unknown as CypressIonicReturn<T>;
-}
-
 function filterThenAssertHydrated<T extends Element>(
   subject: CypressIonicReturn<T>,
 ): CypressIonicReturn<T> {
   return subject.then((elements) => {
-    const $visible = elements.not(
-      '.ion-page-hidden, .ion-page-hidden *',
-    ) as unknown as JQuery<T>;
+    const $visible = elements.not(HIDDEN_PAGE_SELECTOR) as unknown as JQuery<T>;
     if ($visible.length === 0) {
       return cy.wrap($visible);
     }
