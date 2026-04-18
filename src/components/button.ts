@@ -22,10 +22,13 @@ class IonButtonCypress implements CypressIonicComponentClass<
   public clickByText(
     text: string,
   ): Cypress.Chainable<JQuery<HTMLIonButtonElement>> {
-    return cy
-      .findByText(text)
-      .closest<HTMLIonButtonElement>('ion-button')
-      .click({ force: true });
+    return getFromSupportedSelector<HTMLIonButtonElement>(
+      cy
+        .get<HTMLIonButtonElement>('ion-button')
+        .filter(
+          (_i, el) => el.textContent?.replace(/\s+/g, ' ').trim() === text,
+        ),
+    ).click({ force: true });
   }
 }
 

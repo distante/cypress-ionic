@@ -25,4 +25,24 @@ describe('Ion Tab Button', () => {
     cy.get('#tab-click-status').should('have.text', 'clicked:home');
     cy.get('#tab-click-status').should('not.have.text', 'clicked:settings');
   });
+
+  it('should be clicked by text and fire ionTabButtonClick', () => {
+    ionTabButtonCypress.clickByText('Settings');
+
+    cy.get('#tab-click-status').should('have.text', 'clicked:settings');
+  });
+
+  it('clickByText should return the ion-tab-button element', () => {
+    ionTabButtonCypress
+      .clickByText('Profile')
+      .should('match', 'ion-tab-button');
+  });
+
+  it('clickByText should not click a tab button inside a hidden page', () => {
+    ionTabButtonCypress
+      .clickByText('Settings')
+      .should('have.class', 'tab-settings');
+
+    cy.get('#tab-click-status').should('have.text', 'clicked:settings');
+  });
 });

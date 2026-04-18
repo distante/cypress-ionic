@@ -4,7 +4,10 @@ import { convertToTestString } from '/test-helpers/test-helpers.js';
 defineCustomElements(window).then(() => {
   /* Ionic is loaded! */
 
-  document.querySelector('ion-button').addEventListener('click', (event) => {
-    event.target.innerText = convertToTestString(event.target.innerText);
+  document.querySelectorAll('ion-button.test-button').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      console.log('Button clicked!', event.target);
+      event.target.innerText = convertToTestString(event.target.innerText);
+    });
   });
 });

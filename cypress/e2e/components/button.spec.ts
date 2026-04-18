@@ -12,7 +12,7 @@ describe('Ion Button', () => {
       .first()
       .then((ionButton) => {
         const wantedText = testHelpers.convertToTestString(
-          ionButton[0].innerText
+          ionButton[0].innerText,
         );
 
         ionButtonCypress.click(selector);
@@ -26,12 +26,20 @@ describe('Ion Button', () => {
       .first()
       .then((ionButton) => {
         const wantedText = testHelpers.convertToTestString(
-          ionButton[0].innerText
+          ionButton[0].innerText,
         );
 
         ionButtonCypress.clickByText('ion-button text');
 
         cy.contains(wantedText, { matchCase: false }).should('exist');
       });
+  });
+
+  it('clickByText should not click a button inside a hidden page', () => {
+    ionButtonCypress.clickByText('ion-button text');
+
+    cy.contains(testHelpers.convertToTestString('ion-button text'), {
+      matchCase: false,
+    }).should('exist');
   });
 });
