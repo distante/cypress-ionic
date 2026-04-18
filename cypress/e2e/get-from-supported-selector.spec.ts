@@ -9,21 +9,21 @@ describe('Get From Supported Selector', () => {
   it('css selector', () => {
     getFromSupportedSelector('.testing-class').should(
       'have.text',
-      'Label With Class'
+      'Label With Class',
     );
   });
 
   it('Chainable Object from class', () => {
     getFromSupportedSelector(cy.get('.testing-class')).should(
       'have.text',
-      'Label With Class'
+      'Label With Class',
     );
   });
 
   it('Chainable Object from test-id', () => {
     getFromSupportedSelector(cy.findByTestId('testing-test-id')).should(
       'have.text',
-      'Label With Test Id'
+      'Label With Test Id',
     );
   });
 
@@ -31,8 +31,68 @@ describe('Get From Supported Selector', () => {
     cy.get('.testing-class').then(($jQueryObject) => {
       getFromSupportedSelector($jQueryObject).should(
         'have.text',
-        'Label With Class'
+        'Label With Class',
       );
+    });
+  });
+
+  describe('returns only visible element when selector matches both hidden and visible pages', () => {
+    beforeEach(() => {
+      cy.document().then((doc) => {
+        doc.body.insertAdjacentHTML(
+          'beforeend',
+          `
+            <div class="ion-page ion-page-hidden">
+              <ion-label class="testing-class-conflict">Hidden Label</ion-label>
+            </div>
+            <div class="ion-page">
+              <ion-label class="testing-class-conflict">Visible Label</ion-label>
+            </div>
+          `,
+        );
+      });
+    });
+
+    it('css selector', () => {
+      getFromSupportedSelector('.testing-class-conflict')
+        .should('have.length', 1)
+        .should('have.text', 'Visible Label');
+    });
+
+    it('Chainable Object', () => {
+      getFromSupportedSelector(cy.get('.testing-class-conflict'))
+        .should('have.length', 1)
+        .should('have.text', 'Visible Label');
+    });
+
+    it('JQuery Object', () => {
+      cy.get('.testing-class-conflict').then(($jQueryObject) => {
+        getFromSupportedSelector($jQueryObject)
+          .should('have.length', 1)
+          .should('have.text', 'Visible Label');
+      });
+    });
+  });
+
+  describe('ignores elements inside ion-page-hidden', () => {
+    it('css selector', () => {
+      getFromSupportedSelector('.testing-class-hidden').should(
+        'have.length',
+        0,
+      );
+    });
+
+    it('Chainable Object', () => {
+      getFromSupportedSelector(cy.get('.testing-class-hidden')).should(
+        'have.length',
+        0,
+      );
+    });
+
+    it('JQuery Object', () => {
+      cy.get('.testing-class-hidden').then(($jQueryObject) => {
+        getFromSupportedSelector($jQueryObject).should('have.length', 0);
+      });
     });
   });
 
@@ -41,7 +101,7 @@ describe('Get From Supported Selector', () => {
       getFromSupportedSelector<IonRange>('.ion-range-to-test-hydration')
         .then(($ionRange) => {
           return $ionRange[0].shadowRoot?.querySelector(
-            '.range-knob-handle-a, .range-knob-handle.range-knob-a'
+            '.range-knob-handle-a, .range-knob-handle.range-knob-a',
           );
         })
         .should('exist');
@@ -51,7 +111,7 @@ describe('Get From Supported Selector', () => {
       getFromSupportedSelector<IonRange>(cy.get('.ion-range-to-test-hydration'))
         .then(($ionRange) => {
           return $ionRange[0].shadowRoot?.querySelector(
-            '.range-knob-handle-a, .range-knob-handle.range-knob-a'
+            '.range-knob-handle-a, .range-knob-handle.range-knob-a',
           );
         })
         .should('exist');
@@ -63,7 +123,7 @@ describe('Get From Supported Selector', () => {
         getFromSupportedSelector($jQueryObject)
           .then(($ionRange) => {
             return $ionRange[0].shadowRoot?.querySelector(
-              '.range-knob-handle-a, .range-knob-handle.range-knob-a'
+              '.range-knob-handle-a, .range-knob-handle.range-knob-a',
             );
           })
           .should('exist');
