@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,6 +22,13 @@
   <body>
     <main>
       <h2>Get from supported selectors</h2>
+      <div class="ion-page-hidden">
+        <ion-item>
+          <ion-label class="testing-class-hidden"
+            >Label Inside Hidden Page</ion-label
+          >
+        </ion-item>
+      </div>
       <ion-item class="for-get-from-supported-selector">
         <ion-label data-testId="testing-test-id">Label With Test Id</ion-label>
         <ion-label class="testing-class">Label With Class</ion-label>

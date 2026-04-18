@@ -21,7 +21,7 @@
     "full-test": "start-server-and-test serve http://localhost:3999 test-ci",
     "ci": "tsx --experimental-json-modules ./scripts/test.mjs",
     "build": "tsc --project tsconfig.json",
-    "make-docs": "typedoc",
+    "make-docs": "typedoc --cname cypress-ionic.saninnsalas.com",
     "tsc:check": "tsc --noEmit",
     "prettier:check": "prettier --config ./.prettierrc ./src --check",
     "release": "release-it --verbose",
@@ -87,7 +87,7 @@
   "release-it": {
     "hooks": {
       "before:init": "npm run build && npm run ci",
-      "after:bump": "npx typedoc && git add ./docs && git commit -m 'docs: pre-release docs'",
+      "after:bump": "npm run make-docs && git add ./docs && git commit -m 'docs: pre-release docs'",
       "after:release": "echo Successfully released ${name} v${version} to https://${repo.host}/${repo.repository}/releases/tag/v${version}"
     },
     "git": {
