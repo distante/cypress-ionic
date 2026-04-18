@@ -10,19 +10,10 @@ export function getFromSupportedSelector<T extends Element>(
   }
 
   if (isJQuery<T>(selector)) {
-    return filterOutHiddenPage(
-      cy
-        .wrap(selector)
-        .should('have.class', 'hydrated') as CypressIonicReturn<T>,
-    );
+    return filterThenAssertHydrated(cy.wrap(selector) as CypressIonicReturn<T>);
   }
 
-  return filterOutHiddenPage(
-    (selector as unknown as CypressIonicReturn<T>).should(
-      'have.class',
-      'hydrated',
-    ),
-  );
+  return filterThenAssertHydrated(selector as unknown as CypressIonicReturn<T>);
 }
 
 function filterOutHiddenPage<T extends Element>(
@@ -31,6 +22,20 @@ function filterOutHiddenPage<T extends Element>(
   return subject.not(
     '.ion-page-hidden, .ion-page-hidden *',
   ) as unknown as CypressIonicReturn<T>;
+}
+
+function filterThenAssertHydrated<T extends Element>(
+  subject: CypressIonicReturn<T>,
+): CypressIonicReturn<T> {
+  return subject.then((elements) => {
+    const $visible = elements.not(
+      '.ion-page-hidden, .ion-page-hidden *',
+    ) as unknown as JQuery<T>;
+    if ($visible.length === 0) {
+      return cy.wrap($visible);
+    }
+    return cy.wrap($visible).should('have.class', 'hydrated');
+  }) as unknown as CypressIonicReturn<T>;
 }
 
 function isJQuery<T extends Element>(

@@ -96,6 +96,50 @@ describe('Get From Supported Selector', () => {
     });
   });
 
+  describe('filters hidden-page elements BEFORE asserting hydration', () => {
+    beforeEach(() => {
+      cy.document().then((doc) => {
+        doc.body.insertAdjacentHTML(
+          'beforeend',
+          `<div class="ion-page ion-page-hidden">
+             <div class="testing-order-bug">Not Hydrated Hidden</div>
+           </div>
+           <div class="ion-page">
+             <div class="testing-order-bug hydrated">Visible Hydrated</div>
+           </div>`,
+        );
+      });
+    });
+
+    it('Chainable - does not fail when a hidden element lacks .hydrated', () => {
+      getFromSupportedSelector(cy.get('.testing-order-bug'))
+        .should('have.length', 1)
+        .should('have.text', 'Visible Hydrated');
+    });
+
+    it('JQuery - does not fail when a hidden element lacks .hydrated', () => {
+      cy.get('.testing-order-bug').then(($els) => {
+        getFromSupportedSelector($els)
+          .should('have.length', 1)
+          .should('have.text', 'Visible Hydrated');
+      });
+    });
+
+    it('Chainable - returns empty set without timing out when all matches are hidden', () => {
+      getFromSupportedSelector(
+        cy.get('.testing-order-bug').filter(':not(.hydrated)'),
+      ).should('have.length', 0);
+    });
+
+    it('JQuery - returns empty set without timing out when all matches are hidden', () => {
+      cy.get('.testing-order-bug')
+        .filter(':not(.hydrated)')
+        .then(($els) => {
+          getFromSupportedSelector($els).should('have.length', 0);
+        });
+    });
+  });
+
   describe('waiting for components hydration', () => {
     it('css selector', () => {
       getFromSupportedSelector<IonRange>('.ion-range-to-test-hydration')
